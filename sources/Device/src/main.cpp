@@ -10,6 +10,7 @@
 #include "Hardware/InterCom.h"
 #include "Display/Display.h"
 #include "Message.h"
+#include <cstdlib>
 
 
 static void Test();
@@ -67,11 +68,11 @@ int main(void)
 
 void Test()
 {
-    static uint8 buffer[320];
-
+    static uint8 buffer[160];
+    
     TimeMeterMS meter;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 240; i++)
     {
         for (int y = 0; y < 1; y++)
         {
@@ -80,7 +81,7 @@ void Test()
             uint8 num_points = 0;
 
             uint8* line = buffer;                  // ”казатель на очередную передаваемую линию
-            uint8* end = line + 320;
+            uint8* end = line + 160;
 
             DynamicMessage<1024> message(Command::Paint_DirectLine);
 
@@ -114,26 +115,30 @@ void Test()
             {
                 points = *line;
 
-                if ((points & 0x0f) == color)
+                uint8 new_color = points & 0x0f;
+                
+                if (new_color == color)
                 {
                     num_points++;
                 }
                 else
                 {
                     message.PushByte(num_points);
-                    color = (uint8)(points & 0x0f);
+                    color = (uint8)(new_color);
                     num_points = 1;
                     num_segments++;
                 }
 
-                if ((points >> 4) == color)
+                new_color = points >> 4;
+                
+                if (new_color == color)
                 {
                     num_points++;
                 }
                 else
                 {
                     message.PushByte(num_points);
-                    color = (uint8)(points >> 4);
+                    color = (uint8)(new_color);
                     message.PushByte(color);
                     num_points = 1;
                     num_segments++;
@@ -149,5 +154,5 @@ void Test()
     }
 
     volatile uint time = meter.ElapsedTime();
-    time = time;
+    Display::SetTime(time);
 }

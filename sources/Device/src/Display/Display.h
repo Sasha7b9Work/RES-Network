@@ -37,6 +37,8 @@ namespace Display
         // Возвращает указатель на строку
         uint8 *GetLine(int x, int y);
     }
+
+    void SetTime(uint time);
 }
 
 

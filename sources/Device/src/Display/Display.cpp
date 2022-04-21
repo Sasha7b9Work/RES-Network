@@ -123,7 +123,7 @@ void Display::Update()
 
     DrawZones();
 
-    zoneFPS.string.SetFormat("%02d ms", meter_fps.ElapsedTime());
+//    zoneFPS.string.SetFormat("%02d ms", meter_fps.ElapsedTime());
 }
 
 
@@ -271,4 +271,10 @@ void Display::DrawZones()
 
         zone->Draw();
     }
+}
+
+
+void Display::SetTime(uint time)
+{
+    zoneFPS.string.SetFormat("%02d ms", time);
 }
