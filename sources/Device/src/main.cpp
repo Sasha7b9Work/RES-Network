@@ -68,7 +68,7 @@ int main(void)
 
 void Test()
 {
-    static uint8 buffer[160];
+    static uint8 buf[160];
     
     TimeMeterMS meter;
 
@@ -80,7 +80,7 @@ void Test()
             uint8 color = 0;
             uint8 num_points = 0;
 
-            uint8* line = buffer;                  // ”казатель на очередную передаваемую линию
+            uint8* line = buf;                  // ”казатель на очередную передаваемую линию
             uint8* end = line + 160;
 
             DynamicMessage<1024> message(Command::Paint_DirectLine);
@@ -89,9 +89,11 @@ void Test()
 
             uint8 points = *line;
 
+            uint8* buffer = message.Data();
+
             {
                 color = (uint8)(points & 0x0f);
-                message.PushByte(color);
+                *buffer++ = color;
                 num_points = 1;
                 num_segments = 1;
 
@@ -101,9 +103,9 @@ void Test()
                 }
                 else
                 {
-                    message.PushByte(num_points);
+                    *buffer++ = num_points;
                     color = (uint8)(points >> 4);
-                    message.PushByte(color);
+                    *buffer++ = color;
                     num_points = 1;
                     num_segments++;
                 }
@@ -123,7 +125,7 @@ void Test()
                 }
                 else
                 {
-                    message.PushByte(num_points);
+                    *buffer++ = num_points;
                     color = (uint8)(new_color);
                     num_points = 1;
                     num_segments++;
@@ -137,9 +139,9 @@ void Test()
                 }
                 else
                 {
-                    message.PushByte(num_points);
+                    *buffer++ = num_points;
                     color = (uint8)(new_color);
-                    message.PushByte(color);
+                    *buffer++ = color;
                     num_points = 1;
                     num_segments++;
                 }

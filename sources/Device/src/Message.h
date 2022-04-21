@@ -46,6 +46,8 @@ public:
         PushByte((uint8)command);
     }
 
+    uint8* Data() { return buffer; }
+
     void PushByte(uint8 byte)
     {
         if (size < capacity)
