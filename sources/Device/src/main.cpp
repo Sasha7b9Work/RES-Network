@@ -69,7 +69,12 @@ int main(void)
 void Test()
 {
     static uint8 buf[160];
-    
+
+    for (int i = 0; i < 160; i++)
+    {
+        buf[i] = (uint8)(std::rand());
+    }
+
     TimeMeterMS meter;
 
     for (int i = 0; i < 240; i++)
@@ -80,35 +85,49 @@ void Test()
             uint color = 0;
             uint num_points = 0;
 
-            uint8* line = buf;                  // ”казатель на очередную передаваемую линию
-            uint8* end = line + 160;
+            uint* line = (uint*)buf;                                   // ”казатель на очередную передаваемую линию
+            uint* end = (uint*)(buf + 160);
 
             DynamicMessage<1024> message(Command::Paint_DirectLine);
 
-            message.PushByte(0);                            // —юда потом положим размер
+            message.PushByte(0);                                        // —юда потом положим размер
 
-            uint8 points = *line;
+            uint points = *line;
 
             uint8* buffer = message.Data();
 
             {
-                color = (uint8)(points & 0x0f);
+                color = points & 0x0f;                                  // 0-й полубайт
                 *buffer++ = (uint8)color;
                 num_points = 1;
                 num_segments = 1;
 
-                if ((uint)(points >> 4) == color)
-                {
-                    num_points++;
-                }
-                else
-                {
-                    *buffer++ = (uint8)num_points;
-                    color = (uint8)(points >> 4);
-                    *buffer++ = (uint8)color;
-                    num_points = 1;
-                    num_segments++;
-                }
+#define PROCESS_NIBBLE(nibble)  points >>= 4;                       \
+                                if ((points & 0x0f) == color)       \
+                                {                                   \
+                                    num_points++;                   \
+                                }                                   \
+                                else                                \
+                                {                                   \
+                                    *buffer++ = (uint8)num_points;  \
+                                    color = points & 0x0f;          \
+                                    num_points = 1;                 \
+                                    num_segments = 1;               \
+                                }
+
+                PROCESS_NIBBLE(1);
+
+                PROCESS_NIBBLE(2);
+
+                PROCESS_NIBBLE(3);
+
+                PROCESS_NIBBLE(4);
+
+                PROCESS_NIBBLE(5);
+
+                PROCESS_NIBBLE(6);
+
+                PROCESS_NIBBLE(7);
             }
 
             line++;
@@ -117,34 +136,31 @@ void Test()
             {
                 points = *line;
 
-                uint new_color = (uint)(points & 0x0f);
-                
-                if (new_color == color)
+                if ((points & 0x0f) == color)
                 {
                     num_points++;
                 }
                 else
                 {
                     *buffer++ = (uint8)num_points;
-                    color = (uint8)(new_color);
+                    color = points & 0x0f;
                     num_points = 1;
-                    num_segments++;
+                    num_segments = 1;
                 }
 
-                new_color = (uint)(points >> 4);
-                
-                if (new_color == color)
-                {
-                    num_points++;
-                }
-                else
-                {
-                    *buffer++ = (uint8)num_points;
-                    color = (uint8)(new_color);
-                    *buffer++ = (uint8)color;
-                    num_points = 1;
-                    num_segments++;
-                }
+                PROCESS_NIBBLE(1);
+
+                PROCESS_NIBBLE(2);
+
+                PROCESS_NIBBLE(3);
+
+                PROCESS_NIBBLE(4);
+
+                PROCESS_NIBBLE(5);
+
+                PROCESS_NIBBLE(6);
+
+                PROCESS_NIBBLE(7);
 
                 line++;
             }
