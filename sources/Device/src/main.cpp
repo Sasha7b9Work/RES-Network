@@ -76,9 +76,9 @@ void Test()
     {
         for (int y = 0; y < 1; y++)
         {
-            uint8 num_segments = 0;
-            uint8 color = 0;
-            uint8 num_points = 0;
+            uint num_segments = 0;
+            uint color = 0;
+            uint num_points = 0;
 
             uint8* line = buf;                  // ”казатель на очередную передаваемую линию
             uint8* end = line + 160;
@@ -93,19 +93,19 @@ void Test()
 
             {
                 color = (uint8)(points & 0x0f);
-                *buffer++ = color;
+                *buffer++ = (uint8)color;
                 num_points = 1;
                 num_segments = 1;
 
-                if ((points >> 4) == color)
+                if ((uint)(points >> 4) == color)
                 {
                     num_points++;
                 }
                 else
                 {
-                    *buffer++ = num_points;
+                    *buffer++ = (uint8)num_points;
                     color = (uint8)(points >> 4);
-                    *buffer++ = color;
+                    *buffer++ = (uint8)color;
                     num_points = 1;
                     num_segments++;
                 }
@@ -117,7 +117,7 @@ void Test()
             {
                 points = *line;
 
-                uint8 new_color = points & 0x0f;
+                uint new_color = (uint)(points & 0x0f);
                 
                 if (new_color == color)
                 {
@@ -125,13 +125,13 @@ void Test()
                 }
                 else
                 {
-                    *buffer++ = num_points;
+                    *buffer++ = (uint8)num_points;
                     color = (uint8)(new_color);
                     num_points = 1;
                     num_segments++;
                 }
 
-                new_color = points >> 4;
+                new_color = (uint)(points >> 4);
                 
                 if (new_color == color)
                 {
@@ -139,9 +139,9 @@ void Test()
                 }
                 else
                 {
-                    *buffer++ = num_points;
+                    *buffer++ = (uint8)num_points;
                     color = (uint8)(new_color);
-                    *buffer++ = color;
+                    *buffer++ = (uint8)color;
                     num_points = 1;
                     num_segments++;
                 }
@@ -149,9 +149,9 @@ void Test()
                 line++;
             }
 
-            message.PushByte(num_points);
+            message.PushByte((uint8)num_points);
 
-            message.PushByte(1, num_segments);
+            message.PushByte(1, (uint8)num_segments);
         }
     }
 
