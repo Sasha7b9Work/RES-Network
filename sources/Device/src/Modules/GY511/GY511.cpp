@@ -63,19 +63,16 @@ void GY511::Init()
 
 void GY511::Update()
 {
-    if (HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_0) == GPIO_PIN_SET)           // ZYXDA
+    if (Read(GY511_STATUS_REG) & (1 << 3))
     {
-        if (Read(GY511_STATUS_REG) & (1 << 3))
-        {
-            raw_acce_x.byte[0] = Read(GY511_OUT_X_L);
-            raw_acce_x.byte[1] = Read(GY511_OUT_X_H);
+        raw_acce_x.byte[0] = Read(GY511_OUT_X_L);
+        raw_acce_x.byte[1] = Read(GY511_OUT_X_H);
 
-            raw_acce_y.byte[0] = Read(GY511_OUT_Y_L);
-            raw_acce_y.byte[1] = Read(GY511_OUT_Y_H);
+        raw_acce_y.byte[0] = Read(GY511_OUT_Y_L);
+        raw_acce_y.byte[1] = Read(GY511_OUT_Y_H);
 
-            raw_acce_z.byte[0] = Read(GY511_OUT_Z_L);
-            raw_acce_z.byte[1] = Read(GY511_OUT_Z_H);
-        }
+        raw_acce_z.byte[0] = Read(GY511_OUT_Z_L);
+        raw_acce_z.byte[1] = Read(GY511_OUT_Z_H);
     }
 }
 

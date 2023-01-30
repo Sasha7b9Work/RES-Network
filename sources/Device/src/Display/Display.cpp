@@ -364,23 +364,32 @@ void Display::DrawTime()
 {
     int width = 128;
     int height = 32;
-    int y = 80;
+    int y = 85;
 
     Rectangle(width, height).Fill(10, y - 1, Color::BLACK);
 
     PackedTime time = HAL_RTC::GetPackedTime();
 
-    String<>("%02d:%02d:%04d", time.day, time.month, time.year).Draw(10, 80, Color::WHITE);
+    String<>("%02d:%02d:%04d", time.day, time.month, time.year).Draw(5, 85, Color::WHITE);
 
-    String<>("%02d:%02d:%02d", time.hours, time.minutes, time.seconds).Draw(10, 100);
-
-    ST7735::WriteBuffer(0, y, width, height);
+    String<>("%02d:%02d:%02d", time.hours, time.minutes, time.seconds).Draw(5, 105);
 }
 
 
 void Display::DrawAcceleration()
 {
+    int x = 65;
+    int dX = 33;
 
+    String<>("%3.2f", measures[TypeMeasure::AccelerateX].value).Draw(x, 105);
+    x += dX;
+
+    String<>("%3.2f", measures[TypeMeasure::AccelerateY].value).Draw(x, 105);
+    x += dX;
+
+    String<>("%3.2f", measures[TypeMeasure::AccelerateZ].value).Draw(x, 105);
+
+    ST7735::WriteBuffer(0, 85, 128, 32);
 }
 
 
