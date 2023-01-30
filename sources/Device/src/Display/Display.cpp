@@ -58,7 +58,10 @@ namespace Display
 #ifdef TYPE_1
         ,Measure(TypeMeasure::Velocity),
 #endif
-        Measure(TypeMeasure::DewPoint)
+        Measure(TypeMeasure::DewPoint),
+        Measure(TypeMeasure::AccelerateX),
+        Measure(TypeMeasure::AccelerateY),
+        Measure(TypeMeasure::AccelerateZ)
     };
 
     static void DrawMeasures();
@@ -67,6 +70,8 @@ namespace Display
     static void DrawBigMeasure();
 
     static void DrawTime();
+
+    static void DrawAcceleration();
 
     namespace Buffer
     {
@@ -350,12 +355,14 @@ void Display::DrawMeasures()
     }
 
     DrawTime();
+
+    DrawAcceleration();
 }
 
 
 void Display::DrawTime()
 {
-    int width = 60;
+    int width = 128;
     int height = 32;
     int y = 80;
 
@@ -368,6 +375,12 @@ void Display::DrawTime()
     String<>("%02d:%02d:%02d", time.hours, time.minutes, time.seconds).Draw(10, 100);
 
     ST7735::WriteBuffer(0, y, width, height);
+}
+
+
+void Display::DrawAcceleration()
+{
+
 }
 
 

@@ -8,6 +8,7 @@
 #include "Modules/BH1750/BH1750.h"
 #include "Hardware/CDC/CDC.h"
 #include "Modules/ST7735/ST7735.h"
+#include "Modules/GY511/GY511.h"
 #include "Hardware/Timer.h"
 #include "Hardware/InterCom.h"
 #include "Display/Display.h"
@@ -38,6 +39,8 @@ void Device::Init()
 
     BH1750::Init();
 
+    GY511::Init();
+
     Keyboard::Init();
 
     InterCom::SetDirection((Direction::E)(Direction::CDC | Direction::HC12 | Direction::Display));
@@ -46,6 +49,12 @@ void Device::Init()
 
 void Device::Update()
 {
+    GY511::Update();
+
+    Display::SetMeasure(TypeMeasure::AccelerateX, GY511::GetAccelerationX().ToAccelearation());
+    Display::SetMeasure(TypeMeasure::AccelerateY, GY511::GetAccelerationY().ToAccelearation());
+    Display::SetMeasure(TypeMeasure::AccelerateZ, GY511::GetAccelerationZ().ToAccelearation());
+
     float temp = 0.0f;
     float pressure = 0.0f;
     float humidity = 0.0;
@@ -74,8 +83,6 @@ void Device::Update()
     {
         InterCom::Send(TypeMeasure::Illumination, illumination);
     }
-
-
 
     Keyboard::Update();
 

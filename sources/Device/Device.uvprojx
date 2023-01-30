@@ -746,6 +746,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/BH1750</GroupName>
+          <Files>
+            <File>
+              <FileName>BH1750.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\BH1750\BH1750.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>BH1750.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\BH1750\BH1750.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/BME280</GroupName>
           <Files>
             <File>
@@ -776,21 +791,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Modules/HC12</GroupName>
-          <Files>
-            <File>
-              <FileName>HC12.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
-            </File>
-            <File>
-              <FileName>HC12.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Modules/CG-Anem</GroupName>
           <Files>
             <File>
@@ -806,17 +806,32 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Modules/BH1750</GroupName>
+          <GroupName>Modules/GY511</GroupName>
           <Files>
             <File>
-              <FileName>BH1750.cpp</FileName>
+              <FileName>GY511.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.cpp</FilePath>
+              <FilePath>.\src\Modules\GY511\GY511.cpp</FilePath>
             </File>
             <File>
-              <FileName>BH1750.h</FileName>
+              <FileName>GY511.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.h</FilePath>
+              <FilePath>.\src\Modules\GY511\GY511.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/HC12</GroupName>
+          <Files>
+            <File>
+              <FileName>HC12.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
+            </File>
+            <File>
+              <FileName>HC12.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
             </File>
           </Files>
         </Group>
@@ -1647,6 +1662,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/BH1750</GroupName>
+          <Files>
+            <File>
+              <FileName>BH1750.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\BH1750\BH1750.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>BH1750.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\BH1750\BH1750.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/BME280</GroupName>
           <Files>
             <File>
@@ -1677,21 +1707,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Modules/HC12</GroupName>
-          <Files>
-            <File>
-              <FileName>HC12.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
-            </File>
-            <File>
-              <FileName>HC12.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Modules/CG-Anem</GroupName>
           <Files>
             <File>
@@ -1707,17 +1722,32 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Modules/BH1750</GroupName>
+          <GroupName>Modules/GY511</GroupName>
           <Files>
             <File>
-              <FileName>BH1750.cpp</FileName>
+              <FileName>GY511.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.cpp</FilePath>
+              <FilePath>.\src\Modules\GY511\GY511.cpp</FilePath>
             </File>
             <File>
-              <FileName>BH1750.h</FileName>
+              <FileName>GY511.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\src\Modules\BH1750\BH1750.h</FilePath>
+              <FilePath>.\src\Modules\GY511\GY511.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/HC12</GroupName>
+          <Files>
+            <File>
+              <FileName>HC12.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
+            </File>
+            <File>
+              <FileName>HC12.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\HC12\HC12.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -16,6 +16,9 @@ struct TypeMeasure
         Velocity,           // Скорость
 #endif
         DewPoint,           // Точка росы
+        AccelerateX,
+        AccelerateY,
+        AccelerateZ,
         Count
     };
 };

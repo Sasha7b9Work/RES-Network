@@ -19,6 +19,7 @@ add_definitions(-DSTM32F103xB)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -MP -Wall")
 
+add_compile_options(/wd4201)
 add_compile_options(/wd4514)    # 'function' : unreferenced inline function has been removed
 add_compile_options(/wd4623)    # default constructor was implicitly defined as deleted
 add_compile_options(/wd4626)    # assignment operator was implicitly defined as deleted
@@ -44,6 +45,7 @@ file(GLOB MENU_PAGES          src/Menu/Pages/*.*)
 file(GLOB MODULES_BH1750      src/Modules/BH1750/*.*)
 file(GLOB MODULES_BME280      src/Modules/BME280/*.*)
 file(GLOB MODULES_CG_ANEM     src/Modules/CG-Anem/*.*)
+file(GLOB MODULES_GY511       src/Modules/GY511/*.*)
 file(GLOB MODULES_HC12        src/Modules/HC12/*.*)
 file(GLOB MODULES_ST7735      src/Modules/ST7735/*.*)
 file(GLOB SETTINGS            src/Settings/*.*)
@@ -63,6 +65,7 @@ source_group(Menu/Pages          FILES ${MENU_PAGES})
 source_group(Modules/BH1750      FILES ${MODULES_BH1750})
 source_group(Modules/BME280      FILES ${MODULES_BME280})
 source_group(Modules/CG-Anem     FILES ${MODULES_CG_ANEM})
+source_group(Modules/GY511       FILES ${MODULES_GY511})
 source_group(Modules/HC12        FILES ${MODULES_HC12})
 source_group(Modules/ST7735      FILES ${MODULES_ST7735})
 source_group(Modules/ST7735/Font FILES ${MODULES_ST7735_FONT})
@@ -90,6 +93,7 @@ add_library(${PROJECT_NAME}
             ${MODULES_BH1750}
             ${MODULES_BME280}
             ${MODULES_CG_ANEM}
+            ${MODULES_GY511}
             ${MODULES_HC12}
             ${MODULES_ST7735}
             ${MODULES_ST7735_FONT}
