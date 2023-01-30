@@ -26,8 +26,8 @@ void HAL_RTC::Init()
     /*##-1- Configue LSI as RTC clock soucre ###################################*/
     HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
 
-    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI | RCC_OSCILLATORTYPE_LSE;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
     RCC_OscInitStruct.LSIState = RCC_LSI_ON;
     RCC_OscInitStruct.LSEState = RCC_LSE_OFF;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -45,17 +45,6 @@ void HAL_RTC::Init()
     /*##-2- Enable RTC peripheral Clocks #######################################*/
     /* Enable RTC Clock */
     __HAL_RCC_RTC_ENABLE();
-
-    /*##-3- Configure the NVIC for RTC Alarm ###################################*/
-    HAL_NVIC_SetPriority(RTC_IRQn, 0x0, 0);
-
-    /* Enable the RTC global Interrupt */
-    HAL_NVIC_EnableIRQ(RTC_IRQn);
-
-    /*##-1- Configure the RTC peripheral #######################################*/
-    /* Configure RTC prescaler and RTC data registers */
-    /* RTC configured as follow:
-    - Asynch Prediv  = Calculated automatically by HAL (based on LSI at 40kHz) */
 
     if (HAL_RTC_Init(&handleRTC) != HAL_OK)
     {
