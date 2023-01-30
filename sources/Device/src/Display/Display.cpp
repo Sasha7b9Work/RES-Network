@@ -55,8 +55,9 @@ namespace Display
         Measure(TypeMeasure::Temperature),
         Measure(TypeMeasure::Humidity)
 #ifdef TYPE_1
-        ,Measure(TypeMeasure::Velocity)
+        ,Measure(TypeMeasure::Velocity),
 #endif
+        Measure(TypeMeasure::DewPoint)
     };
 
     static void DrawMeasures();
@@ -315,24 +316,33 @@ void Display::DrawMeasures()
     const int x0 = 3;
 
     // Ïóñòîå ìåñòî ìåæäó ñòğîêàìè
-    const int d_lines = (Display::HEIGHT - TypeMeasure::Count * Font::Height()) / (TypeMeasure::Count + 1);
+    const int d_lines = (Display::HEIGHT - 5 * Font::Height()) / (5 + 1);
 
     const int y0 = d_lines;
     const int dY = d_lines + Font::Height();
 
-    for (int i = 0; i < TypeMeasure::Count; i++)
+    static const int NUM_MEASURES = 3;
+
+    static const TypeMeasure::E types[NUM_MEASURES] =
     {
-        if (gset.display.show_measure[i])
+        TypeMeasure::Temperature,
+        TypeMeasure::Humidity,
+        TypeMeasure::DewPoint
+    };
+
+    for (int i = 0; i < NUM_MEASURES; i++)
+    {
+//        if (gset.display.show_measure[types[i]])
         {
             int y = y0 + i * dY;
 
             if (need_redraw)
             {
-                String<>("%s", measures[i].Name().c_str()).Draw(x0, y, Color::WHITE);
-                measures[i].Units().Draw(x0 + 134, y);
+                String<>("%s", measures[types[i]].Name().c_str()).Draw(x0, y, Color::WHITE);
+                measures[types[i]].Units().Draw(x0 + 134, y);
             }
 
-            measures[i].Draw(93, y);
+            measures[types[i]].Draw(93, y);
         }
     }
 }
@@ -376,8 +386,9 @@ String<> Display::Measure::Name()
         "ÒÅÌÏÅĞÀÒÓĞÀ",
         "ÂËÀÆÍÎÑÒÜ"
 #ifdef TYPE_1
-        , "ÑÊÎĞÎÑÒÜ"
+        , "ÑÊÎĞÎÑÒÜ",
 #endif
+        "ÒÎ×ÊÀ     ĞÎÑÛ"
     };
 
     return String<>(names[type]);
@@ -392,8 +403,9 @@ String<> Display::Measure::Units()
         "¨Ñ",
         "%%"
 #ifdef TYPE_1
-        , "ì/ñ"
+        , "ì/ñ",
 #endif
+        "¨Ñ"
     };
 
     return String<>(units[type]);

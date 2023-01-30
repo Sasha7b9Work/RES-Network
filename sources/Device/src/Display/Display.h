@@ -15,6 +15,7 @@ struct TypeMeasure
 #ifdef TYPE_1
         Velocity,           // Скорость
 #endif
+        DewPoint,           // Точка росы
         Count
     };
 };
@@ -23,7 +24,7 @@ struct TypeMeasure
 namespace Display
 {
     static const int WIDTH = 160;
-    static const int HEIGHT = 128;
+    const int HEIGHT = 128;
 
     extern bool need_redraw;
 

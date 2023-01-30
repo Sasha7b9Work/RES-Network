@@ -17,6 +17,6 @@ namespace Menu
 
     namespace Title
     {
-        static const int HEIGHT = 27;
+        const int HEIGHT = 27;
     }
 }
