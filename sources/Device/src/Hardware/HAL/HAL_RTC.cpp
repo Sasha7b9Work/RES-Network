@@ -69,6 +69,20 @@ void HAL_RTC::Init()
 
     /*##-4- Write 'wakeup timer enabled' tag in RTC Backup data Register 1 #######*/
     HAL_RTCEx_BKUPWrite(&handleRTC, RTC_BKP_DR1, WAKEUP_TIMER_ENABLE);
+
+    RTC_TimeTypeDef time;
+    time.Hours = 8;
+    time.Minutes = 15;
+    time.Seconds = 0;
+
+    RTC_DateTypeDef date;
+    date.Date = 1;
+    date.Month = 2;
+    date.Year = 23;
+
+    HAL_RTC_SetTime(&handleRTC, &time, RTC_FORMAT_BIN);
+
+    HAL_RTC_SetDate(&handleRTC, &date, RTC_FORMAT_BIN);
 }
 
 
@@ -82,7 +96,7 @@ PackedTime HAL_RTC::GetPackedTime()
 
     HAL_RTC_GetDate(&handleRTC, &date, RTC_FORMAT_BIN);
 
-    PackedTime result(time.Hours, time.Minutes, time.Seconds, date.Date, date.Month, date.Year);
+    PackedTime result(time.Hours, time.Minutes, time.Seconds, date.Date, date.Month, (uint)(2000 + date.Year));
 
     return result;
 }
