@@ -355,11 +355,19 @@ void Display::DrawMeasures()
 
 void Display::DrawTime()
 {
+    int width = 60;
+    int height = 32;
+    int y = 80;
+
+    Rectangle(width, height).Fill(10, y - 1, Color::BLACK);
+
     PackedTime time = HAL_RTC::GetPackedTime();
 
-    String<>("%02d:%02d:%04d", time.day, time.month, time.year).Draw(10, 80);
+    String<>("%02d:%02d:%04d", time.day, time.month, time.year).Draw(10, 80, Color::WHITE);
 
     String<>("%02d:%02d:%02d", time.hours, time.minutes, time.seconds).Draw(10, 100);
+
+    ST7735::WriteBuffer(0, y, width, height);
 }
 
 
