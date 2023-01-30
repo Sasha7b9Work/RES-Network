@@ -68,7 +68,7 @@ void HAL_RTC::Init()
     if (HAL_RTCEx_BKUPRead(&handleRTC, RTC_BKP_DR1) == WAKEUP_TIMER_ENABLE)
     {
         /* if the wakeup timer is enabled then desable it to disable the wakeup timer interrupt */
-        if (HAL_RTCEx_DeactivateSecond(&handleRTC) != HAL_OK)
+//        if (HAL_RTCEx_DeactivateSecond(&handleRTC) != HAL_OK)
         {
             /* Initialization Error */
             HAL::Delay(100);
@@ -80,4 +80,26 @@ void HAL_RTC::Init()
 
     /*##-4- Write 'wakeup timer enabled' tag in RTC Backup data Register 1 #######*/
     HAL_RTCEx_BKUPWrite(&handleRTC, RTC_BKP_DR1, WAKEUP_TIMER_ENABLE);
+}
+
+
+PackedTime HAL_RTC::GetPackedTime()
+{
+    RTC_TimeTypeDef time;
+
+    HAL_RTC_GetTime(&handleRTC, &time, RTC_FORMAT_BIN);
+
+    RTC_DateTypeDef date;
+
+    HAL_RTC_GetDate(&handleRTC, &date, RTC_FORMAT_BIN);
+
+    PackedTime result(time.Hours, time.Minutes, time.Seconds, date.Date, date.Month, date.Year);
+
+    return result;
+}
+
+
+String<> PackedTime::ToString() const
+{
+    return String<>("%02d:%02d:%02d:%03d", hours, minutes, seconds, ms);
 }

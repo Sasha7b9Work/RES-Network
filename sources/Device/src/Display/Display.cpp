@@ -10,6 +10,7 @@
 #include "Display/Zones.h"
 #include "Menu/Menu.h"
 #include "Settings/Settings.h"
+#include "Hardware/HAL/HAL.h"
 #include <cstdlib>
 
 
@@ -345,6 +346,12 @@ void Display::DrawMeasures()
             measures[types[i]].Draw(93, y);
         }
     }
+
+    PackedTime time = HAL_RTC::GetPackedTime();
+
+    String<>("%02d:%02d:%04d", time.day, time.month, time.year).Draw(10, 80);
+
+    String<>("%02d:%02d:%02d", time.hours, time.minutes, time.seconds).Draw(10, 100);
 }
 
 
