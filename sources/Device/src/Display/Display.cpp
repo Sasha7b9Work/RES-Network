@@ -66,6 +66,8 @@ namespace Display
     // Вывести одно измерение на весь экран
     static void DrawBigMeasure();
 
+    static void DrawTime();
+
     namespace Buffer
     {
         static uint8 buffer[WIDTH * HEIGHT / 2];       // Четырёхбитный цвет
@@ -347,6 +349,12 @@ void Display::DrawMeasures()
         }
     }
 
+    DrawTime();
+}
+
+
+void Display::DrawTime()
+{
     PackedTime time = HAL_RTC::GetPackedTime();
 
     String<>("%02d:%02d:%04d", time.day, time.month, time.year).Draw(10, 80);
