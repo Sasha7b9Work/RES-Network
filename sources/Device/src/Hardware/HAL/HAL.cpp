@@ -23,6 +23,8 @@ void HAL::Init()
     HAL_I2C1::Init();
 
     CDC::Init();
+
+    HAL_RTC::Init();
 }
 
 

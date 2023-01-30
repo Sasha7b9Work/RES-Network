@@ -1,0 +1,83 @@
+// 2023/01/30 15:35:49 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#include "defines.h"
+#include "Hardware/HAL/HAL.h"
+#include <stm32f1xx_hal.h>
+
+
+namespace HAL_RTC
+{
+#define WAKEUP_TIMER_ENABLE 0x32F2
+
+    static RTC_HandleTypeDef handleRTC =
+    {
+        RTC,
+        {
+            RTC_AUTO_1_SECOND       // AsynchPrediv
+        }
+    };
+}
+
+
+void HAL_RTC::Init()
+{
+    RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_PeriphCLKInitTypeDef  PeriphClkInitStruct;
+
+    /*##-1- Configue LSI as RTC clock soucre ###################################*/
+    HAL_RCC_GetOscConfig(&RCC_OscInitStruct);
+
+    RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI | RCC_OSCILLATORTYPE_LSE;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+    RCC_OscInitStruct.LSEState = RCC_LSE_OFF;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+    {
+        HAL::Delay(100);
+    }
+
+    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
+    PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+    {
+        HAL::Delay(100);
+    }
+
+    /*##-2- Enable RTC peripheral Clocks #######################################*/
+    /* Enable RTC Clock */
+    __HAL_RCC_RTC_ENABLE();
+
+    /*##-3- Configure the NVIC for RTC Alarm ###################################*/
+    HAL_NVIC_SetPriority(RTC_IRQn, 0x0, 0);
+
+    /* Enable the RTC global Interrupt */
+    HAL_NVIC_EnableIRQ(RTC_IRQn);
+
+    /*##-1- Configure the RTC peripheral #######################################*/
+    /* Configure RTC prescaler and RTC data registers */
+    /* RTC configured as follow:
+    - Asynch Prediv  = Calculated automatically by HAL (based on LSI at 40kHz) */
+
+    if (HAL_RTC_Init(&handleRTC) != HAL_OK)
+    {
+        /* Initialization Error */
+        HAL::Delay(100);
+    }
+
+    /*##-2- Check if data stored in BackUp register1: Wakeup timer enable #######*/
+    /* Read the Back Up Register 1 Data */
+    if (HAL_RTCEx_BKUPRead(&handleRTC, RTC_BKP_DR1) == WAKEUP_TIMER_ENABLE)
+    {
+        /* if the wakeup timer is enabled then desable it to disable the wakeup timer interrupt */
+        if (HAL_RTCEx_DeactivateSecond(&handleRTC) != HAL_OK)
+        {
+            /* Initialization Error */
+            HAL::Delay(100);
+        }
+    }
+
+    /*##-3- Configure the RTC Wakeup peripheral #################################*/
+//    HAL_RTCEx_SetSecond_IT(&handleRTC);
+
+    /*##-4- Write 'wakeup timer enabled' tag in RTC Backup data Register 1 #######*/
+    HAL_RTCEx_BKUPWrite(&handleRTC, RTC_BKP_DR1, WAKEUP_TIMER_ENABLE);
+}
