@@ -12,6 +12,14 @@
 #include "Hardware/InterCom.h"
 #include "Display/Display.h"
 #include "Hardware/Keyboard.h"
+#include <cmath>
+
+
+namespace Device
+{
+    static float CalculateDewPoint(float temperature, float humidity);
+    static float CalculateF(float temperature, float humidity);
+}
 
 
 void Device::Init()
@@ -47,6 +55,7 @@ void Device::Update()
         InterCom::Send(TypeMeasure::Temperature, temp);
         InterCom::Send(TypeMeasure::Pressure, pressure);
         InterCom::Send(TypeMeasure::Humidity, humidity);
+        InterCom::Send(TypeMeasure::DewPoint, CalculateDewPoint(temp, humidity));
     }
 
 #ifdef TYPE_1
@@ -66,7 +75,23 @@ void Device::Update()
         InterCom::Send(TypeMeasure::Illumination, illumination);
     }
 
+
+
     Keyboard::Update();
 
     Display::Update();
+}
+
+
+float Device::CalculateDewPoint(float temperature, float humidity)
+{
+    float f = CalculateF(temperature, humidity);
+
+    return (237.7f * f) / (17.27f - f);
+}
+
+
+float Device::CalculateF(float temperature, float humidity)
+{
+    return (17.27f * temperature) / (237.7f + temperature) + std::log(humidity / 100.0f);
 }
