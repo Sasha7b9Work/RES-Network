@@ -362,7 +362,7 @@ void Display::DrawMeasures()
 
 void Display::DrawTime()
 {
-    int width = 128;
+    int width = 160;
     int height = 32;
     int y = 85;
 
@@ -389,7 +389,7 @@ void Display::DrawAcceleration()
 
     String<>("%3.2f", measures[TypeMeasure::AccelerateZ].value).Draw(x, 105);
 
-    ST7735::WriteBuffer(0, 85, 128, 32);
+    ST7735::WriteBuffer(0, 85, 160, 32);
 }
 
 
