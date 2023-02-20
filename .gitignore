@@ -13,3 +13,9 @@ sources/Device/Objects/
 sources/Device/Listings-Debug/
 sources/Device/Objects-Debug/
 sources/Device/DebugConfig/
+
+sources/GTC/Listings/
+sources/GTC/Objects/
+sources/GTC/Listings-Debug/
+sources/GTC/Objects-Debug/
+sources/GTC/DebugConfig/
