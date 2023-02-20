@@ -55,6 +55,10 @@ void Device::Update()
     Display::SetMeasure(TypeMeasure::AccelerateY, GY511::GetAccelerationY().ToAccelearation());
     Display::SetMeasure(TypeMeasure::AccelerateZ, GY511::GetAccelerationZ().ToAccelearation());
 
+    Display::SetMeasure(TypeMeasure::MagneticX, GY511::GetAccelerationX().ToAccelearation());
+    Display::SetMeasure(TypeMeasure::MagneticY, GY511::GetAccelerationY().ToAccelearation());
+    Display::SetMeasure(TypeMeasure::MagneticZ, GY511::GetAccelerationZ().ToAccelearation());
+
     float temp = 0.0f;
     float pressure = 0.0f;
     float humidity = 0.0;

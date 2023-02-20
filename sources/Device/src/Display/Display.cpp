@@ -61,7 +61,10 @@ namespace Display
         Measure(TypeMeasure::DewPoint),
         Measure(TypeMeasure::AccelerateX),
         Measure(TypeMeasure::AccelerateY),
-        Measure(TypeMeasure::AccelerateZ)
+        Measure(TypeMeasure::AccelerateZ),
+        Measure(TypeMeasure::MagneticX),
+        Measure(TypeMeasure::MagneticY),
+        Measure(TypeMeasure::MagneticZ)
     };
 
     static void DrawMeasures();
@@ -72,6 +75,8 @@ namespace Display
     static void DrawTime();
 
     static void DrawAcceleration();
+
+    static void DrawMagnetic();
 
     namespace Buffer
     {
@@ -357,6 +362,8 @@ void Display::DrawMeasures()
     DrawTime();
 
     DrawAcceleration();
+
+    DrawMagnetic();
 }
 
 
@@ -390,6 +397,15 @@ void Display::DrawAcceleration()
     String<>("%3.2f", measures[TypeMeasure::AccelerateZ].value).Draw(x, 105);
 
     ST7735::WriteBuffer(0, 85, 160, 32);
+}
+
+
+void Display::DrawMagnetic()
+{
+    int x = 70;
+    int dX = 30;
+
+    String<>("%3.")
 }
 
 

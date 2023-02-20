@@ -19,6 +19,9 @@ struct TypeMeasure
         AccelerateX,
         AccelerateY,
         AccelerateZ,
+        MagneticX,
+        MagneticY,
+        MagneticZ,
         Count
     };
 };

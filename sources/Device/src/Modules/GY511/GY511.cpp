@@ -5,6 +5,14 @@
 #include <stm32f1xx_hal.h>
 
 
+#define REG_MAG_OUT_X_H     0x03U
+#define REG_MAG_OUT_X_L     0x04U
+#define REG_MAG_OUT_Y_H     0x07U
+#define REG_MAG_OUT_Y_L     0x80U
+#define REG_MAG_OUT_Z_H     0x05U
+#define REG_MAG_OUT_Z_L     0x06U
+#define REG_MAG_SR          0x09U
+
 #define GY511_CTRL_REG1     0x20U
 #define GY511_CTRL_REG3     0x22U
 #define GY511_CTRL_REG4     0x23U
@@ -23,6 +31,10 @@ namespace GY511
     static StructDataRaw raw_acce_x;
     static StructDataRaw raw_acce_y;
     static StructDataRaw raw_acce_z;
+
+    static StructDataRaw magnetic_x;
+    static StructDataRaw magnetic_y;
+    static StructDataRaw magnetic_z;
 
     static void Write(uint8 reg, uint8 data)
     {
@@ -73,6 +85,18 @@ void GY511::Update()
 
         raw_acce_z.byte[0] = Read(GY511_OUT_Z_L);
         raw_acce_z.byte[1] = Read(GY511_OUT_Z_H);
+    }
+
+    if (Read(REG_MAG_SR) & 1)
+    {
+        magnetic_x.byte[0] = Read(REG_MAG_OUT_X_L);
+        magnetic_x.byte[1] = Read(REG_MAG_OUT_X_H);
+
+        magnetic_y.byte[0] = Read(REG_MAG_OUT_Y_L);
+        magnetic_y.byte[1] = Read(REG_MAG_OUT_Y_H);
+
+        magnetic_z.byte[0] = Read(REG_MAG_OUT_Z_L);
+        magnetic_z.byte[1] = Read(REG_MAG_OUT_Z_H);
     }
 }
 
