@@ -361,9 +361,9 @@ void Display::DrawMeasures()
 
     DrawTime();
 
-    DrawAcceleration();
-
     DrawMagnetic();
+
+    DrawAcceleration();
 }
 
 
@@ -404,8 +404,15 @@ void Display::DrawMagnetic()
 {
     int x = 70;
     int dX = 30;
+    int y = 90;
 
-    String<>("%3.")
+    String<>("%3.2f", measures[TypeMeasure::MagneticX].value).Draw(x, y);
+    x += dX;
+
+    String<>("%3.2f", measures[TypeMeasure::MagneticY].value).Draw(x, y);
+    x += dX;
+
+    String<>("%3.2f", measures[TypeMeasure::MagneticZ].value).Draw(x, y);
 }
 
 

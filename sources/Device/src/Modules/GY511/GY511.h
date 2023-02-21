@@ -36,5 +36,9 @@ namespace GY511
 
     StructDataRaw GetAccelerationZ();
 
-    StructDataRaw GetRawTemperature();
+    StructDataRaw GetMagneticX();
+
+    StructDataRaw GetMagneticY();
+
+    StructDataRaw GetMagneticZ();
 }

@@ -117,3 +117,21 @@ StructDataRaw GY511::GetAccelerationZ()
 {
     return raw_acce_z;
 }
+
+
+StructDataRaw GY511::GetMagneticX()
+{
+    return magnetic_x;
+}
+
+
+StructDataRaw GY511::GetMagneticY()
+{
+    return magnetic_y;
+}
+
+
+StructDataRaw GY511::GetMagneticZ()
+{
+    return magnetic_z;
+}
