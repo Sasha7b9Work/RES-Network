@@ -409,10 +409,10 @@ void Display::DrawMagnetic()
     String<>("%3.2f", measures[TypeMeasure::MagneticX].value).Draw(x, y);
     x += dX;
 
-    String<>("%3.2f", measures[TypeMeasure::MagneticY].value).Draw(x, y);
-    x += dX;
-
-    String<>("%3.2f", measures[TypeMeasure::MagneticZ].value).Draw(x, y);
+//    String<>("%3.2f", measures[TypeMeasure::MagneticY].value).Draw(x, y);
+//    x += dX;
+//
+//    String<>("%3.2f", measures[TypeMeasure::MagneticZ].value).Draw(x, y);
 }
 
 

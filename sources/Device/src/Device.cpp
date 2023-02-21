@@ -55,9 +55,9 @@ void Device::Update()
     Display::SetMeasure(TypeMeasure::AccelerateY, GY511::GetAccelerationY().ToAccelearation());
     Display::SetMeasure(TypeMeasure::AccelerateZ, GY511::GetAccelerationZ().ToAccelearation());
 
-    Display::SetMeasure(TypeMeasure::MagneticX, GY511::GetMagneticX().ToAccelearation());
-    Display::SetMeasure(TypeMeasure::MagneticY, GY511::GetMagneticY().ToAccelearation());
-    Display::SetMeasure(TypeMeasure::MagneticZ, GY511::GetMagneticZ().ToAccelearation());
+    Display::SetMeasure(TypeMeasure::MagneticX, GY511::GetMagneticX().ToMagnetic());
+    Display::SetMeasure(TypeMeasure::MagneticY, GY511::GetMagneticY().ToMagnetic());
+    Display::SetMeasure(TypeMeasure::MagneticZ, GY511::GetMagneticZ().ToMagnetic());
 
     float temp = 0.0f;
     float pressure = 0.0f;

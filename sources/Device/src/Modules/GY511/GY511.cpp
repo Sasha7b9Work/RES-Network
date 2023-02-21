@@ -11,6 +11,7 @@
 #define REG_MAG_OUT_Y_L     0x80U
 #define REG_MAG_OUT_Z_H     0x05U
 #define REG_MAG_OUT_Z_L     0x06U
+#define REG_MAG_MR          0x02U
 #define REG_MAG_SR          0x09U
 
 #define GY511_CTRL_REG1     0x20U
@@ -48,10 +49,10 @@ namespace GY511
         return result;
     }
 
-//    static void WriteM(uint8 reg, uint8 data)
-//    {
-//        HAL_I2C1::Write(0x1e, reg, &data, 1);
-//    }
+    static void WriteM(uint8 reg, uint8 data)
+    {
+        HAL_I2C1::Write(0x1e, reg, &data, 1);
+    }
 
     static uint8 ReadM(uint8 reg)
     {
@@ -82,6 +83,8 @@ void GY511::Init()
     HAL_I2C1::Read(0x19, GY511_CTRL_REG4, &data, 1);
     data |= (1 << 3);                                           // HR = 1, (LPen = 0 - High resolution mode)
     WriteA(GY511_CTRL_REG4, data);
+
+    WriteM(REG_MAG_MR, 0);
 }
 
 
@@ -109,6 +112,12 @@ void GY511::Update()
 
         magnetic_z.byte[0] = ReadM(REG_MAG_OUT_Z_L);
         magnetic_z.byte[1] = ReadM(REG_MAG_OUT_Z_H);
+
+        WriteM(REG_MAG_SR, 2);
+    }
+    else
+    {
+        int i = 0;
     }
 }
 
