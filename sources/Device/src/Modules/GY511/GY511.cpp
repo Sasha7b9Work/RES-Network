@@ -115,10 +115,6 @@ void GY511::Update()
 
         WriteM(REG_MAG_SR, 2);
     }
-    else
-    {
-        int i = 0;
-    }
 }
 
 
