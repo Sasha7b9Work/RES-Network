@@ -84,7 +84,7 @@ void GY511::Init()
     data |= (1 << 3);                                           // HR = 1, (LPen = 0 - High resolution mode)
     WriteA(GY511_CTRL_REG4, data);
 
-    WriteM(REG_MAG_CRB, 0xe0);
+//    WriteM(REG_MAG_CRB, 0xe0);
     WriteM(REG_MAG_MR, 0);
 }
 

@@ -23,12 +23,12 @@ union StructDataRaw
 
     float ToMagneticXY()
     {
-        return (float)raw / 230.0f;
+        return (float)raw / 1100.0f;
     }
 
     float ToMagneticZ()
     {
-        return (float)raw / 205.0f;
+        return (float)raw / 980.0f;
     }
 };
 

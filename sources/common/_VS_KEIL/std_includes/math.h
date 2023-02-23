@@ -11,3 +11,6 @@ bool isnan(float);
 float expf(float);
 void srand(uint);
 float powf(float, float);
+float sqrt(float);
+float asin(float);
+float acos(float);

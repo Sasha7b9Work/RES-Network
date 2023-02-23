@@ -12,6 +12,7 @@
 #include "Settings/Settings.h"
 #include "Hardware/HAL/HAL.h"
 #include <cstdlib>
+#include <cmath>
 
 
 namespace Display
@@ -77,6 +78,8 @@ namespace Display
     static void DrawAcceleration();
 
     static void DrawMagnetic();
+
+    static float CalculateAzimuth();
 
     namespace Buffer
     {
@@ -406,13 +409,56 @@ void Display::DrawMagnetic()
     int dX = 30;
     int y = 90;
 
-    String<>("%3.2f", measures[TypeMeasure::MagneticX].value).Draw(x, y);
+    String<>("%3.2f", measures[TypeMeasure::MagneticX].value * 10.0f).Draw(x, y);
     x += dX;
 
-    String<>("%3.2f", measures[TypeMeasure::MagneticY].value).Draw(x, y);
-    x += dX;
+//    String<>("%3.2f", measures[TypeMeasure::MagneticY].value * 10.0f).Draw(x, y);
+    x += dX / 2;
 
-    String<>("%3.2f", measures[TypeMeasure::MagneticZ].value).Draw(x, y);
+    String<>("%3.0f", CalculateAzimuth()).Draw(x, y);
+
+//    String<>("%3.2f", measures[TypeMeasure::MagneticZ].value * 10.0f).Draw(x, y);
+
+//    float m_x = measures[TypeMeasure::MagneticX].value * 10.0f;
+//    float m_y = measures[TypeMeasure::MagneticY].value * 10.0f;
+//    float m_z = measures[TypeMeasure::MagneticZ].value * 10.0f;
+//
+//    String<>("%3.2f", std::sqrt(m_x * m_x + m_y * m_y + m_z * m_z)).Draw(x, y);
+}
+
+
+float Display::CalculateAzimuth()
+{
+    float ax = measures[TypeMeasure::MagneticZ].value;
+    float ay = measures[TypeMeasure::MagneticX].value;
+
+    float length = std::sqrt(ax * ax + ay * ay);
+
+    ax /= length;
+    ay /= length;
+
+    float azimuth = std::asin(ay) * 180.0f / 3.1415296f;
+
+    if (ay >= 0.0f)
+    {
+        if (ax < 0.0f)
+        {
+            azimuth = 180.0f - azimuth;
+        }
+    }
+    else
+    {
+        if (ax < 0.0f)
+        {
+            azimuth = -azimuth + 180.0f;
+        }
+        else
+        {
+            azimuth = 360.0f + azimuth;
+        }
+    }
+
+    return azimuth;
 }
 
 
