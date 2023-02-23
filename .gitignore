@@ -3,6 +3,7 @@
 *.lst
 *.scvd
 *.out
+*.dbgconf
 ~*~
 
 archive.zip
