@@ -4,14 +4,14 @@
 #include "Hardware/HAL/HAL.h"
 #include <stm32f1xx_hal.h>
 
-
+#define REG_MAG_CRB         0x01U
+#define REG_MAG_MR          0x02U
 #define REG_MAG_OUT_X_H     0x03U
 #define REG_MAG_OUT_X_L     0x04U
 #define REG_MAG_OUT_Y_H     0x05U
 #define REG_MAG_OUT_Y_L     0x06U
 #define REG_MAG_OUT_Z_H     0x07U
 #define REG_MAG_OUT_Z_L     0x08U
-#define REG_MAG_MR          0x02U
 #define REG_MAG_SR          0x09U
 
 #define GY511_CTRL_REG1     0x20U
@@ -84,6 +84,7 @@ void GY511::Init()
     data |= (1 << 3);                                           // HR = 1, (LPen = 0 - High resolution mode)
     WriteA(GY511_CTRL_REG4, data);
 
+    WriteM(REG_MAG_CRB, 0xe0);
     WriteM(REG_MAG_MR, 0);
 }
 
