@@ -7,10 +7,10 @@
 
 #define REG_MAG_OUT_X_H     0x03U
 #define REG_MAG_OUT_X_L     0x04U
-#define REG_MAG_OUT_Y_H     0x07U
-#define REG_MAG_OUT_Y_L     0x80U
-#define REG_MAG_OUT_Z_H     0x05U
-#define REG_MAG_OUT_Z_L     0x06U
+#define REG_MAG_OUT_Y_H     0x05U
+#define REG_MAG_OUT_Y_L     0x06U
+#define REG_MAG_OUT_Z_H     0x07U
+#define REG_MAG_OUT_Z_L     0x08U
 #define REG_MAG_MR          0x02U
 #define REG_MAG_SR          0x09U
 
@@ -112,8 +112,6 @@ void GY511::Update()
 
         magnetic_z.byte[0] = ReadM(REG_MAG_OUT_Z_L);
         magnetic_z.byte[1] = ReadM(REG_MAG_OUT_Z_H);
-
-        WriteM(REG_MAG_SR, 2);
     }
 }
 
