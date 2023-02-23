@@ -409,13 +409,13 @@ void Display::DrawMagnetic()
     int dX = 30;
     int y = 90;
 
-    String<>("%3.2f", measures[TypeMeasure::MagneticX].value * 10.0f).Draw(x, y);
+//    String<>("%3.2f", measures[TypeMeasure::MagneticX].value * 10.0f).Draw(x, y);
     x += dX;
 
 //    String<>("%3.2f", measures[TypeMeasure::MagneticY].value * 10.0f).Draw(x, y);
-    x += dX / 2;
+    x += dX / 3;
 
-    String<>("%3.0f", CalculateAzimuth()).Draw(x, y);
+    String<>("%d", (int)CalculateAzimuth()).Draw(x, y);
 
 //    String<>("%3.2f", measures[TypeMeasure::MagneticZ].value * 10.0f).Draw(x, y);
 
@@ -439,14 +439,7 @@ float Display::CalculateAzimuth()
 
     float azimuth = std::asin(ay) * 180.0f / 3.1415296f;
 
-    if (ay >= 0.0f)
-    {
-        if (ax < 0.0f)
-        {
-            azimuth = 180.0f - azimuth;
-        }
-    }
-    else
+    if (ay < 0.0f)
     {
         if (ax < 0.0f)
         {
@@ -457,8 +450,12 @@ float Display::CalculateAzimuth()
             azimuth = 360.0f + azimuth;
         }
     }
+    else if(ax < 0.0f)
+    {
+        azimuth = 180.0f - azimuth;
+    }
 
-    return azimuth;
+    return 360.0f - azimuth;
 }
 
 
