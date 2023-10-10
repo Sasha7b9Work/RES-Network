@@ -28,6 +28,7 @@ void HAL_ADC::Init()
     handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
     handleADC.Init.ContinuousConvMode = DISABLE;
     handleADC.Init.DiscontinuousConvMode = DISABLE;
+    handleADC.Init.NbrOfDiscConversion = 0;
     handleADC.Init.ExternalTrigConv = ADC_SOFTWARE_START;
     handleADC.Init.DataAlign = ADC_DATAALIGN_RIGHT;
     handleADC.Init.NbrOfConversion = 1;
@@ -45,6 +46,8 @@ float HAL_ADC::ReadChannel(uint channel)
 //    sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
 
     HAL_ADC_ConfigChannel(&handleADC, &config);
+
+    HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
 
     HAL_NVIC_EnableIRQ(ADC1_IRQn);
 
