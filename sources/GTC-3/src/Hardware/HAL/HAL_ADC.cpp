@@ -43,21 +43,13 @@ float HAL_ADC::ReadChannel(uint channel)
 
     config.Channel = channel;
     config.Rank = ADC_REGULAR_RANK_1;
-//    sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
+    config.SamplingTime = ADC_SAMPLETIME_7CYCLES_5;
 
     HAL_ADC_ConfigChannel(&handleADC, &config);
 
-    HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
+    HAL_ADC_Start(&handleADC);
 
-    HAL_NVIC_EnableIRQ(ADC1_IRQn);
-
-    flag_ready = false;
-
-    HAL_ADC_Start_IT(&handleADC);
-
-    while (!flag_ready)
-    {
-    }
+    HAL_ADC_PollForConversion(&handleADC, 10);
 
     float value = (float)HAL_ADC_GetValue(&handleADC) / (1 << 12) * 3.3f * 1.25f;
 
