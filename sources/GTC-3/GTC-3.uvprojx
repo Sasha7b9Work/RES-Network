@@ -891,6 +891,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Modules/HIH4000</GroupName>
+          <Files>
+            <File>
+              <FileName>HIH4000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\HIH4000\HIH4000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HIH4000.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\HIH4000\HIH4000.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Modules/ST7735</GroupName>
           <Files>
             <File>
@@ -1933,6 +1948,21 @@
               <FileName>HC12.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\Modules\HC12\HC12.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Modules/HIH4000</GroupName>
+          <Files>
+            <File>
+              <FileName>HIH4000.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\src\Modules\HIH4000\HIH4000.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HIH4000.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\Modules\HIH4000\HIH4000.h</FilePath>
             </File>
           </Files>
         </Group>

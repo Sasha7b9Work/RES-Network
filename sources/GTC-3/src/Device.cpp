@@ -2,8 +2,8 @@
 #include "defines.h"
 #include "Device.h"
 #include "Measures.h"
-#include "Modules/HC12/HC12.h"
 #include "Hardware/HAL/HAL.h"
+#include "Modules/HC12/HC12.h"
 #include "Modules/BME280/BME280.h"
 #include "Hardware/CDC/CDC.h"
 #include "Modules/ST7735/ST7735.h"
@@ -14,6 +14,7 @@
 #include "Hardware/Keyboard.h"
 #include "Hardware/Beeper.h"
 #include "Display/StartScreen.h"
+#include "Modules/HIH4000/HIH4000.h"
 #include <cmath>
 
 
@@ -83,7 +84,7 @@ void Device::Update()
         }
     }
 
-    InterCom::Send(TypeMeasure::Humidity2, HAL_ADC::GetHumidity());
+    InterCom::Send(TypeMeasure::Humidity2, HIH4000::GetHumidity());
 
     Keyboard::Update();
 

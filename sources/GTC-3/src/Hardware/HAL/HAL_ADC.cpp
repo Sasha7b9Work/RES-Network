@@ -24,8 +24,6 @@ void HAL_ADC::Init()
     pinADC.Init();
     pinHumidity.Init();
 
-    ADC_ChannelConfTypeDef sConfig = { 0 };
-
     handleADC.Instance = ADC1;
     handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
     handleADC.Init.ContinuousConvMode = DISABLE;
@@ -35,16 +33,6 @@ void HAL_ADC::Init()
     handleADC.Init.NbrOfConversion = 1;
 
     HAL_ADC_Init(&handleADC);
-
-    sConfig.Channel = ADC_CHANNEL_4;
-    sConfig.Rank = ADC_REGULAR_RANK_1;
-//    sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
-
-    HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
-
-    HAL_NVIC_EnableIRQ(ADC1_IRQn);
-
-    HAL_ADC_Start_IT(&handleADC);
 }
 
 

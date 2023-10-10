@@ -2,7 +2,7 @@
 
 project (GTC-3)
 
-#set(CMAKE_UNITY_BUILD OFF)
+set(CMAKE_UNITY_BUILD OFF)
 
 message("------------------------------------------------------------------------ ${PROJECT_NAME}")
 
@@ -48,7 +48,7 @@ file(GLOB MENU                  src/Menu/*.*)
 file(GLOB MENU_PAGES            src/Menu/Pages/*.*)
 file(GLOB MODULES_BME280        src/Modules/BME280/*.*)
 file(GLOB MODULES_HC12          src/Modules/HC12/*.*)
-file(GLOB MODULES_PRESSMETER    src/Modules/PressMeter/*.*)
+file(GLOB MODULES_HIH4000       src/Modules/HIH4000/*.*)
 file(GLOB MODULES_ST7735        src/Modules/ST7735/*.*)
 file(GLOB MODULES_W25Q80DV      src/Modules/W25Q80DV/*.*)
 file(GLOB SETTINGS              src/Settings/*.*)
@@ -69,7 +69,7 @@ source_group(Menu               FILES ${MENU})
 source_group(Menu/Pages         FILES ${MENU_PAGES})
 source_group(Modules/BME280     FILES ${MODULES_BME280})
 source_group(Modules/HC12       FILES ${MODULES_HC12})
-source_group(Modules/PressMeter FILES ${MODULES_PRESSMETER})
+source_group(Modules/HIH4000    FILES ${MODULES_HIH4000})
 source_group(Modules/ST7735     FILES ${MODULES_ST7735})
 source_group(Modules/W25Q80DV   FILES ${MODULES_W25Q80DV})
 source_group(Settings           FILES ${SETTINGS})
@@ -97,7 +97,7 @@ add_library(${PROJECT_NAME}
             ${MENU_PAGES}
             ${MODULES_BME280}
             ${MODULES_HC12}
-            ${MODULES_PRESSMETER}
+            ${MODULES_HIH4000}
             ${MODULES_ST7735}
             ${MODULES_W25Q80DV}
             ${SETTINGS}

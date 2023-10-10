@@ -2,4 +2,8 @@
 #pragma once
 
 
+namespace HIH4000
+{
+    float GetHumidity();
+}
 
