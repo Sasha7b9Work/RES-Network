@@ -43,19 +43,24 @@ uint HAL_ADC::ReadChannel(uint channel)
 
     config.Channel = channel;
     config.Rank = ADC_REGULAR_RANK_1;
-    config.SamplingTime = ADC_SAMPLETIME_7CYCLES_5;
+    config.SamplingTime = ADC_SAMPLETIME_601CYCLES_5;
 
-    HAL_ADC_ConfigChannel(&handleADC, &config);
+    uint value = 0;
 
-    HAL_ADC_Start(&handleADC);
-
-    HAL_ADC_PollForConversion(&handleADC, 10);
-
-    uint value = HAL_ADC_GetValue(&handleADC);
-
-    if (value != 0)
+    if (HAL_ADC_ConfigChannel(&handleADC, &config) == HAL_OK)
     {
-        value = value;
+        if (HAL_ADC_Start(&handleADC) == HAL_OK)
+        {
+            if (HAL_ADC_PollForConversion(&handleADC, 100) == HAL_OK)
+            {
+                value = HAL_ADC_GetValue(&handleADC);
+
+                if (value != 0 && value != 0xFFF)
+                {
+                    value = value;
+                }
+            }
+        }
     }
 
     return value;
