@@ -78,13 +78,35 @@ float HAL_ADC::ReadChannel(uint channel)
 
 float HAL_ADC::GetVoltage()
 {
-    return ReadChannel(ADC_CHANNEL_4);
+    static TimeMeterMS meter;
+
+    static float voltage = 0.0f;
+
+    if (meter.IsFinished())
+    {
+        voltage = ReadChannel(ADC_CHANNEL_4);
+    }
+
+    meter.FinishAfter(1000);
+
+    return voltage;
 }
 
 
 float HAL_ADC::GetHumidity()
 {
-    return ReadChannel(ADC_CHANNEL_1);
+    static TimeMeterMS meter;
+
+    static float humidity = 0.0f;
+
+    if (meter.IsFinished())
+    {
+        humidity = ReadChannel(ADC_CHANNEL_1);
+    }
+
+    meter.FinishAfter(1000);
+
+    return humidity;
 }
 
 

@@ -3,13 +3,12 @@
 #include "Hardware/HAL/HAL.h"
 
 
-void HAL_ADC::Update()
-{
-
-}
-
-
 float HAL_ADC::GetVoltage()
 {
     return 0.0f;
+}
+
+float HAL_ADC::GetHumidity()
+{
+    return 6.66f;
 }

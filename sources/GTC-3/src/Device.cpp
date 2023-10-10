@@ -83,6 +83,8 @@ void Device::Update()
         }
     }
 
+    InterCom::Send(TypeMeasure::Humidity2, HAL_ADC::GetHumidity());
+
     Keyboard::Update();
 
     Display::Update();

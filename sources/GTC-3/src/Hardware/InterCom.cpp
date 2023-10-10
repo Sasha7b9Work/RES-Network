@@ -64,20 +64,22 @@ void InterCom::SetDirection(Direction::E dir)
 
 void InterCom::Send(TypeMeasure::E type, float measure)
 {
-    static const pchar names[TypeMeasure::Count] =
+    static const pchar names[TypeMeasure::_Count] =
     {
         "Temperature",
         "Pressure",
         "Humidity",
-        "Dew Point"
+        "Dew Point",
+        "Humidity2"
     };
 
-    static const pchar units[TypeMeasure::Count] =
+    static const pchar units[TypeMeasure::_Count] =
     {
         "degress Celsius",
         "hPa",
         "%%",
-        "degress Celsius"
+        "degress Celsius",
+        "%%"
     };
 
     if (direction & Direction::Display)

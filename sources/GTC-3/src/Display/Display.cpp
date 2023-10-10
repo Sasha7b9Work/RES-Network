@@ -52,12 +52,13 @@ namespace Display
         String<> Units();
     };
 
-    static Measure measures[TypeMeasure::Count] =
+    static Measure measures[TypeMeasure::_Count] =
     {
         Measure(TypeMeasure::Temperature),
         Measure(TypeMeasure::Pressure),
         Measure(TypeMeasure::Humidity),
-        Measure(TypeMeasure::DewPoint)
+        Measure(TypeMeasure::DewPoint),
+        Measure(TypeMeasure::Humidity2)
     };
 
     static void DrawMeasures();
@@ -312,15 +313,16 @@ void Display::DrawMeasures()
     const int y0 = d_lines;
     const int dY = d_lines + Font::Height();
 
-    static const TypeMeasure::E types[TypeMeasure::Count] =
+    static const TypeMeasure::E types[TypeMeasure::_Count] =
     {
         TypeMeasure::Temperature,
         TypeMeasure::Pressure,
         TypeMeasure::Humidity,
-        TypeMeasure::DewPoint
+        TypeMeasure::DewPoint,
+        TypeMeasure::Humidity2
     };
 
-    for (int i = 0; i < TypeMeasure::Count; i++)
+    for (int i = 0; i < TypeMeasure::_Count; i++)
     {
         int x = 93;
         int y = y0 + i * dY;
@@ -378,12 +380,13 @@ void Display::DrawBigMeasure()
 
     BeginScene(Color::BLACK);
 
-    static const int x[TypeMeasure::Count] =
+    static const int x[TypeMeasure::_Count] =
     {
         30,
         12,
         28,
-        35
+        35,
+        10
     };
 
     Measure &measure = measures[gset.display.typeDisplaydInfo.value];
@@ -400,12 +403,13 @@ void Display::DrawBigMeasure()
 
 String<> Display::Measure::Name()
 {
-    static const pchar names[TypeMeasure::Count] =
+    static const pchar names[TypeMeasure::_Count] =
     {
         "ÒÅÌÏÅĞÀÒÓĞÀ",
         "ÄÀÂËÅÍÈÅ",
         "ÂËÀÆÍÎÑÒÜ",
-        "ÒÎ×ÊÀ ĞÎÑÛ"
+        "ÒÎ×ÊÀ ĞÎÑÛ",
+        "ÄÀÂËÅÍÈÅ 2"
     };
 
     String<> result(names[type]);
@@ -415,12 +419,13 @@ String<> Display::Measure::Name()
 
 String<> Display::Measure::Units()
 {
-    static const pchar units[TypeMeasure::Count] =
+    static const pchar units[TypeMeasure::_Count] =
     {
         "¨Ñ",
         "ãÏà",
         "%%",
-        "¨Ñ"
+        "¨Ñ",
+        "%%"
     };
 
     return String<>(units[type]);
