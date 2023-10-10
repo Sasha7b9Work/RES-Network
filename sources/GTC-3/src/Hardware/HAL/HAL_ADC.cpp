@@ -17,14 +17,11 @@ namespace HAL_ADC
 
 void HAL_ADC::Init()
 {
-#ifndef WIN32
-    __HAL_RCC_ADC1_CLK_ENABLE();
-#endif
-
     pinADC.Init();
     pinHumidity.Init();
 
     handleADC.Instance = ADC1;
+    handleADC.Init.Resolution = ADC_RESOLUTION_12B;
     handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
     handleADC.Init.ContinuousConvMode = DISABLE;
     handleADC.Init.DiscontinuousConvMode = DISABLE;

@@ -165,38 +165,6 @@
           <ExecCommand></ExecCommand>
           <Expression>\\GTC_3\src/Hardware/HAL/HAL_ADC.cpp\68</Expression>
         </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>66</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134265878</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;2&gt;.\src\Hardware\HAL\HAL_ADC.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\GTC_3\src/Hardware/HAL/HAL_ADC.cpp\66</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>58</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134265852</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;2&gt;.\src\Hardware\HAL\HAL_ADC.cpp</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\GTC_3\src/Hardware/HAL/HAL_ADC.cpp\58</Expression>
-        </Bp>
       </Breakpoint>
       <MemoryWindow1>
         <Mm>
