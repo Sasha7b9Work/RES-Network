@@ -34,6 +34,8 @@ void HAL_ADC::Init()
     handleADC.Init.NbrOfConversion = 1;
 
     HAL_ADC_Init(&handleADC);
+
+    HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
 }
 
 
@@ -49,16 +51,21 @@ uint HAL_ADC::ReadChannel(uint channel)
 
     if (HAL_ADC_ConfigChannel(&handleADC, &config) == HAL_OK)
     {
-        if (HAL_ADC_Start(&handleADC) == HAL_OK)
-        {
-            if (HAL_ADC_PollForConversion(&handleADC, 100) == HAL_OK)
-            {
-                value = HAL_ADC_GetValue(&handleADC);
+        HAL_NVIC_EnableIRQ(ADC1_IRQn);
 
-                if (value != 0 && value != 0xFFF)
-                {
-                    value = value;
-                }
+        flag_ready = false;
+
+        if (HAL_ADC_Start_IT(&handleADC) == HAL_OK)
+        {
+            while (!flag_ready)
+            {
+            }
+
+            value = HAL_ADC_GetValue(&handleADC);
+
+            if (value != 0 && value != 0xFFF)
+            {
+                value = value;
             }
         }
     }
