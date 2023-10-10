@@ -52,13 +52,13 @@ namespace Display
         String<> Units();
     };
 
-    static Measure measures[TypeMeasure::_Count] =
+    static Measure measures[TypeMeasure::Count] =
     {
         Measure(TypeMeasure::Temperature),
         Measure(TypeMeasure::Pressure),
         Measure(TypeMeasure::Humidity),
-        Measure(TypeMeasure::DewPoint),
-        Measure(TypeMeasure::Humidity2)
+        Measure(TypeMeasure::Humidity2),
+        Measure(TypeMeasure::DewPoint)
     };
 
     static void DrawMeasures();
@@ -313,32 +313,29 @@ void Display::DrawMeasures()
     const int y0 = d_lines;
     const int dY = d_lines + Font::Height();
 
-    static const TypeMeasure::E types[TypeMeasure::_Count] =
+    static const TypeMeasure::E types[TypeMeasure::Count] =
     {
         TypeMeasure::Temperature,
         TypeMeasure::Pressure,
         TypeMeasure::Humidity,
-        TypeMeasure::DewPoint,
-        TypeMeasure::Humidity2
+        TypeMeasure::Humidity2,
+        TypeMeasure::DewPoint
     };
 
-    for (int i = 0; i < TypeMeasure::_Count; i++)
+    for (int i = 0; i < 4; i++)
     {
         int x = 93;
         int y = y0 + i * dY;
         int width = 30;
         int height = 15;
 
-        if (gset.display.show_measure[types[i]])
+        if (need_redraw)
         {
-            if (need_redraw)
-            {
-                String<>("%s", measures[types[i]].Name().c_str()).Draw(x0, y, Measures::InRange((TypeMeasure::E)i, measures[i].value) ? Color::WHITE : Color::FLASH_10);
-                measures[types[i]].Units().Draw(x + 41, y);
-            }
-
-            measures[types[i]].Draw(x, y);
+            String<>("%s", measures[types[i]].Name().c_str()).Draw(x0, y, Color::WHITE);
+            measures[types[i]].Units().Draw(x + 41, y);
         }
+
+        measures[types[i]].Draw(x, y);
 
         ST7735::WriteBuffer(x - 1, y, width, height);
     }
@@ -380,7 +377,7 @@ void Display::DrawBigMeasure()
 
     BeginScene(Color::BLACK);
 
-    static const int x[TypeMeasure::_Count] =
+    static const int x[TypeMeasure::Count] =
     {
         30,
         12,
@@ -403,13 +400,13 @@ void Display::DrawBigMeasure()
 
 String<> Display::Measure::Name()
 {
-    static const pchar names[TypeMeasure::_Count] =
+    static const pchar names[TypeMeasure::Count] =
     {
         "ÒÅÌÏÅĞÀÒÓĞÀ",
         "ÄÀÂËÅÍÈÅ",
         "ÂËÀÆÍÎÑÒÜ",
-        "ÒÎ×ÊÀ ĞÎÑÛ",
-        "ÄÀÂËÅÍÈÅ 2"
+        "ÂËÀÆÍÎÑÒÜ 2",
+        "ÒÎ×ÊÀ ĞÎÑÛ"
     };
 
     String<> result(names[type]);
@@ -419,13 +416,13 @@ String<> Display::Measure::Name()
 
 String<> Display::Measure::Units()
 {
-    static const pchar units[TypeMeasure::_Count] =
+    static const pchar units[TypeMeasure::Count] =
     {
         "¨Ñ",
         "ãÏà",
         "%%",
-        "¨Ñ",
-        "%%"
+        "%%",
+        "¨Ñ"
     };
 
     return String<>(units[type]);
