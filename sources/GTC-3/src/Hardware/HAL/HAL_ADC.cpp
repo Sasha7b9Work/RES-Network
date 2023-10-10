@@ -9,8 +9,9 @@ namespace HAL_ADC
 {
     static ADC_HandleTypeDef handleADC;
     void *handle = (void *)&handleADC;
+    static bool flag_ready = false;
 
-    static float voltage = 0.0f;
+    static float ReadChannel(uint channel);
 }
 
 
@@ -21,6 +22,7 @@ void HAL_ADC::Init()
 #endif
 
     pinADC.Init();
+    pinHumidity.Init();
 
     ADC_ChannelConfTypeDef sConfig = { 0 };
 
@@ -38,8 +40,6 @@ void HAL_ADC::Init()
     sConfig.Rank = ADC_REGULAR_RANK_1;
 //    sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
 
-    HAL_ADC_ConfigChannel(&handleADC, &sConfig);
-
     HAL_NVIC_SetPriority(ADC1_IRQn, 1, 1);
 
     HAL_NVIC_EnableIRQ(ADC1_IRQn);
@@ -48,26 +48,47 @@ void HAL_ADC::Init()
 }
 
 
+float HAL_ADC::ReadChannel(uint channel)
+{
+    ADC_ChannelConfTypeDef config = { 0 };
+
+    config.Channel = channel;
+    config.Rank = ADC_REGULAR_RANK_1;
+//    sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
+
+    HAL_ADC_ConfigChannel(&handleADC, &config);
+
+    HAL_NVIC_EnableIRQ(ADC1_IRQn);
+
+    flag_ready = false;
+
+    HAL_ADC_Start_IT(&handleADC);
+
+    while (!flag_ready)
+    {
+    }
+
+    float value = (float)HAL_ADC_GetValue(&handleADC) / (1 << 12) * 3.3f * 1.25f;
+
+    HAL_NVIC_DisableIRQ(ADC1_IRQn);
+
+    return value;
+}
+
+
 float HAL_ADC::GetVoltage()
 {
-    return voltage;
+    return ReadChannel(ADC_CHANNEL_4);
 }
 
 
-void HAL_ADC::Update()
+float HAL_ADC::GetHumidity()
 {
-    static TimeMeterMS meter;
-
-    if (meter.ElapsedTime() > 250)
-    {
-        HAL_ADC_Start_IT((ADC_HandleTypeDef *)HAL_ADC::handle);
-
-        meter.Reset();
-    }
+    return ReadChannel(ADC_CHANNEL_1);
 }
 
 
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *)
 {
-    HAL_ADC::voltage = (float)HAL_ADC_GetValue(hadc) / (1 << 12) * 3.3f * 1.25f;
+    HAL_ADC::flag_ready = true;
 }

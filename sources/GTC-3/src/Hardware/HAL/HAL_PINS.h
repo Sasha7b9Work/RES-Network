@@ -55,6 +55,7 @@ struct PinAnalog : public Pin
 extern Pin         pinWP;
 extern PinOutputPP pinBEEP;
 extern PinAnalog   pinADC;
+extern PinAnalog   pinHumidity;
 
 extern PinAF_PP    pinSCK_SPI1;     // SPI1
 extern PinAF_PP    pinMOSI_SPI1;    // SPI1

@@ -36,11 +36,9 @@ namespace HAL_ADC
 {
     void Init();
 
-    void Update();
-
     float GetVoltage();
 
-    float GetPressure();
+    float GetHumidity();
 
     extern void *handle;           // ADC_HandleTypeDef
 }

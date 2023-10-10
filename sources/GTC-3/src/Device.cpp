@@ -86,8 +86,6 @@ void Device::Update()
     Keyboard::Update();
 
     Display::Update();
-
-    HAL_ADC::Update();
 }
 
 
