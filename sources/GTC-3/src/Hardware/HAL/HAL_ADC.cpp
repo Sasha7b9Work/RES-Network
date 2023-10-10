@@ -53,7 +53,10 @@ uint HAL_ADC::ReadChannel(uint channel)
 
     uint value = HAL_ADC_GetValue(&handleADC);
 
-    HAL_NVIC_DisableIRQ(ADC1_IRQn);
+    if (value != 0)
+    {
+        value = value;
+    }
 
     return value;
 }
@@ -68,9 +71,9 @@ float HAL_ADC::GetVoltage()
     if (meter.IsFinished())
     {
         voltage = (float)ReadChannel(ADC_CHANNEL_4) * 3.3f * 1.25f / (float)(1 << 12);
-    }
 
-    meter.FinishAfter(1000);
+        meter.FinishAfter(1000);
+    }
 
     return voltage;
 }
@@ -85,9 +88,9 @@ float HAL_ADC::GetHumidity()
     if (meter.IsFinished())
     {
         humidity = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
-    }
 
-    meter.FinishAfter(1000);
+        meter.FinishAfter(1000);
+    }
 
     return humidity;
 }
