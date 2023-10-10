@@ -11,7 +11,7 @@ namespace HAL_ADC
     void *handle = (void *)&handleADC;
     static bool flag_ready = false;
 
-    static float ReadChannel(uint channel);
+    static uint ReadChannel(uint channel);
 }
 
 
@@ -37,7 +37,7 @@ void HAL_ADC::Init()
 }
 
 
-float HAL_ADC::ReadChannel(uint channel)
+uint HAL_ADC::ReadChannel(uint channel)
 {
     ADC_ChannelConfTypeDef config = { 0 };
 
@@ -51,7 +51,7 @@ float HAL_ADC::ReadChannel(uint channel)
 
     HAL_ADC_PollForConversion(&handleADC, 10);
 
-    float value = (float)HAL_ADC_GetValue(&handleADC) / (1 << 12) * 3.3f * 1.25f;
+    uint value = HAL_ADC_GetValue(&handleADC);
 
     HAL_NVIC_DisableIRQ(ADC1_IRQn);
 
@@ -67,7 +67,7 @@ float HAL_ADC::GetVoltage()
 
     if (meter.IsFinished())
     {
-        voltage = ReadChannel(ADC_CHANNEL_4);
+        voltage = (float)ReadChannel(ADC_CHANNEL_4) * 3.3f * 1.25f / (float)(1 << 12);
     }
 
     meter.FinishAfter(1000);
@@ -84,7 +84,7 @@ float HAL_ADC::GetHumidity()
 
     if (meter.IsFinished())
     {
-        humidity = ReadChannel(ADC_CHANNEL_1);
+        humidity = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
     }
 
     meter.FinishAfter(1000);

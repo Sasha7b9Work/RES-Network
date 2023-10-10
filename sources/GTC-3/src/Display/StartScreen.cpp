@@ -20,7 +20,7 @@ void StartScreen::Run()
 //        ST7735::WriteBuffer(0, i, Display::WIDTH, 1);
 //    }
 
-    for (int i = 0; i < 20000; i++)
+    for (int i = 0; i < 10000; i++)
     {
         ST7735::WritePoint((int)(std::rand() % Display::WIDTH), (int)(std::rand() % Display::HEIGHT), 0);
     }
