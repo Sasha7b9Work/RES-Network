@@ -21,6 +21,7 @@ void HAL_ADC::Init()
     pinHumidity.Init();
 
     handleADC.Instance = ADC1;
+    handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
     handleADC.Init.Resolution = ADC_RESOLUTION_12B;
     handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
     handleADC.Init.ContinuousConvMode = DISABLE;
