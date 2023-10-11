@@ -66,8 +66,6 @@ namespace Display
     // Вывести одно измерение на весь экран
     static void DrawBigMeasure();
 
-    static void DrawTime();
-
     static void DrawStar();
 
     namespace Buffer
@@ -278,8 +276,6 @@ void Display::Update()
 
             DrawMeasures();
 
-            DrawTime();
-
             DrawStar();
 
             if (need_redraw)
@@ -339,26 +335,6 @@ void Display::DrawMeasures()
 
         ST7735::WriteBuffer(x - 1, y, width, height);
     }
-}
-
-
-void Display::DrawTime()
-{
-    int width = 160;
-    int height = 16;
-    int y = 105;
-
-    Font::Set(TypeFont::_12_10);
-    
-    Rectangle(width, height).Fill(4, y - 1, Color::BLACK);
-
-    PackedTime time = HAL_RTC::GetTime();
-
-    String<>("%02d:%02d:%02d", time.hours, time.minutes, time.seconds).Draw(5, 105, Color::WHITE);
-
-    String<>("%02d:%02d:%04d", time.day, time.month, time.year + 2000).Draw(80, 105);
-
-    ST7735::WriteBuffer(0, y, width, height);
 }
 
 
