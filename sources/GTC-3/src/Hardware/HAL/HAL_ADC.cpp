@@ -135,7 +135,9 @@ float HAL_ADC::GetHumidity()
 {
     static Averager<32> averager;
 
-    averager.Push((float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12));
+    float voltage = (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12) * 3.0f / 2.0f;
+
+    averager.Push(voltage);
 
     return averager.Get();
 }
