@@ -44,7 +44,7 @@ uint HAL_ADC::ReadChannel(uint channel)
 
     config.Channel = channel;
     config.Rank = ADC_REGULAR_RANK_1;
-    config.SamplingTime = ADC_SAMPLETIME_61CYCLES_5;
+    config.SamplingTime = ADC_SAMPLETIME_601CYCLES_5;
 
     uint value = 0;
 
