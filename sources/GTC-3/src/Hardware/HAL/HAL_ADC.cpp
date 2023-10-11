@@ -3,6 +3,7 @@
 #include "Hardware/HAL/HAL.h"
 #include "Hardware/Timer.h"
 #include <stm32f3xx_hal.h>
+#include <cstring>
 
 
 namespace HAL_ADC
@@ -89,9 +90,54 @@ float HAL_ADC::GetVoltage()
 }
 
 
+template<int size_buffer>
+class Averager //-V730
+{
+public:
+    Averager() : num_elements(0) { }
+
+    void Push(float value)
+    {
+        if (num_elements == size_buffer)
+        {
+            std::memmove(buffer, buffer + 1, sizeof(float) * (size_buffer - 1));
+
+            num_elements--;
+        }
+        buffer[num_elements++] = value;
+    }
+
+    float Pop(int index)
+    {
+        return buffer[index];
+    }
+
+    float Get()
+    {
+        float sum = 0;
+
+        for (int i = 0; i < num_elements; i++)
+        {
+            sum += buffer[i];
+        }
+
+        return sum / (float)num_elements;
+    }
+    int NumElements() const { return num_elements; }
+    void Reset() { num_elements = 0; }
+private:
+    float buffer[size_buffer];
+    int num_elements;
+};
+
+
 float HAL_ADC::GetHumidity()
 {
-    return (float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12);
+    static Averager<32> averager;
+
+    averager.Push((float)ReadChannel(ADC_CHANNEL_1) * 3.3f / (float)(1 << 12));
+
+    return averager.Get();
 }
 
 
