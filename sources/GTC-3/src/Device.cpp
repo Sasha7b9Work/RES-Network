@@ -55,18 +55,12 @@ void Device::Init()
 
 void Device::Update()
 {
-    float temp = 0.0f;
-    float pressure = 0.0f;
-    float humidity = 0.0;
+    static float temp = 0.0f;
+    static float pressure = 0.0f;
+    static float humidity = 0.0;
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity))
     {
-        float voltage = 0.0f;
-
-        InterCom::Send(TypeMeasure::Humidity2, HIH4000::GetHumidity(temp, &voltage));
-
-        Display::SendVoltage(voltage);
-
         InterCom::Send(TypeMeasure::Temperature, temp);
         InterCom::Send(TypeMeasure::Pressure, pressure);
         InterCom::Send(TypeMeasure::Humidity, humidity);
@@ -89,6 +83,12 @@ void Device::Update()
             Beeper::Start(100);
         }
     }
+
+    float voltage = 0.0f;
+
+    InterCom::Send(TypeMeasure::Humidity2, HIH4000::GetHumidity(temp, &voltage));
+
+    Display::SendVoltage(voltage);
 
     Keyboard::Update();
 

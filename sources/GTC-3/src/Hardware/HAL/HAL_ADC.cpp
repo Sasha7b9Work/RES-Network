@@ -22,7 +22,7 @@ void HAL_ADC::Init()
     pinHumidity.Init();
 
     handleADC.Instance = ADC1;
-    handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
+    handleADC.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
     handleADC.Init.Resolution = ADC_RESOLUTION_12B;
     handleADC.Init.ScanConvMode = ADC_SCAN_DISABLE;
     handleADC.Init.ContinuousConvMode = DISABLE;
@@ -44,7 +44,7 @@ uint HAL_ADC::ReadChannel(uint channel)
 
     config.Channel = channel;
     config.Rank = ADC_REGULAR_RANK_1;
-    config.SamplingTime = ADC_SAMPLETIME_601CYCLES_5;
+    config.SamplingTime = ADC_SAMPLETIME_61CYCLES_5;
 
     uint value = 0;
 
