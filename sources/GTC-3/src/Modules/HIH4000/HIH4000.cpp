@@ -38,9 +38,11 @@ namespace HIH4000
 }
 
 
-float HIH4000::GetHumidity(float t)
+float HIH4000::GetHumidity(float t, float *voltage_out)
 {
     float voltage = HAL_ADC::GetHumidity();
+
+    *voltage_out = voltage;
 
     float k2 = K2(volt0);
     float k1 = K1(volt75, k2);

@@ -5,6 +5,6 @@
 namespace HIH4000
 {
     // t - температура в градусах цельсия
-    float GetHumidity(float t);
+    float GetHumidity(float t, float *voltage_out);
 }
 
