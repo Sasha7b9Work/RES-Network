@@ -4,6 +4,7 @@
 
 namespace HIH4000
 {
-    float GetHumidity();
+    // t - температура в градусах цельсия
+    float GetHumidity(float t);
 }
 

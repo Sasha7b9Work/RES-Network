@@ -61,6 +61,8 @@ void Device::Update()
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity))
     {
+        InterCom::Send(TypeMeasure::Humidity2, HIH4000::GetHumidity(temp));
+
         InterCom::Send(TypeMeasure::Temperature, temp);
         InterCom::Send(TypeMeasure::Pressure, pressure);
         InterCom::Send(TypeMeasure::Humidity, humidity);
@@ -83,8 +85,6 @@ void Device::Update()
             Beeper::Start(100);
         }
     }
-
-    InterCom::Send(TypeMeasure::Humidity2, HIH4000::GetHumidity());
 
     Keyboard::Update();
 
