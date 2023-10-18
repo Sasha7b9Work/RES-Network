@@ -72,6 +72,7 @@ file(GLOB MENU_PAGES                ../../GTC-3/src/Menu/Pages/*.*)
 file(GLOB MODULES_BH1750            ../../GTC-3/src/Modules/BH1750/*.*)
 file(GLOB MODULES_BME280            ../../GTC-3/src/Modules/BME280/*.*)
 file(GLOB MODULES_HC12              ../../GTC-3/src/Modules/HC12/*.*)
+file(GLOB MODULES_HIH4000           ../../GTC-3/src/Modules/HIH4000/*.*)
 file(GLOB MODULES_ST7735            ../../GTC-3/src/Modules/ST7735/*.*)
 file(GLOB MODULES_W25Q80DV          ../../GTC-3/src/Modules/W25Q80DV/*.*)
 file(GLOB SETTINGS                  ../../GTC-3/src/Settings/*.*)
@@ -94,6 +95,7 @@ source_group(Menu/Pages             FILES ${MENU_PAGES})
 source_group(Modules/BH1750         FILES ${MODULES_BH1750})
 source_group(Modules/BME280         FILES ${MODULES_BME280})
 source_group(Modules/HC12           FILES ${MODULES_HC12})
+source_group(Modules/HIH4000        FILES ${MODULES_HIH4000})
 source_group(Modules/ST7735         FILES ${MODULES_ST7735})
 source_group(Modules/W25Q80DV       FILES ${MODULES_W25Q80DV})
 source_group(Settings               FILES ${SETTINGS})
@@ -133,6 +135,7 @@ add_executable( ${PROJECT_NAME}
                 ${MODULES_BH1750}
                 ${MODULES_BME280}
                 ${MODULES_HC12}
+                ${MODULES_HIH4000}
                 ${MODULES_ST7735}
                 ${MODULES_W25Q80DV}
                 ${SETTINGS}
