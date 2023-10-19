@@ -139,14 +139,6 @@ static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t *pbuf, uint16_t length)
 }
 
 
-/**
-  * @brief  CDC_Itf_DataRx
-  *         Data received over USB OUT endpoint are sent over CDC interface
-  *         through this function.
-  * @param  Buf: Buffer of data to be transmitted
-  * @param  Len: Number of data received (in bytes)
-  * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
-  */
 static int8_t CDC_Itf_Receive(uint8_t *Buf, uint32_t *Len)
 {
     UNUSED(Buf);
@@ -154,21 +146,3 @@ static int8_t CDC_Itf_Receive(uint8_t *Buf, uint32_t *Len)
 
     return (USBD_OK);
 }
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  None
-  * @retval None
-  */
-static void Error_Handler(void)
-{
-    /* Add your own code here */
-}
-
-/**
-  * @}
-  */
-
-  /**
-    * @}
-    */
