@@ -1,7 +1,7 @@
 // Sasha7b9@tut.by (c)
 #include "defines.h"
 #include "Hardware/InterCom.h"
-#include "Hardware/CDC/CDC.h"
+#include "Hardware/CDC/usbd_cdc_interface.h"
 #include "Modules/HC12/HC12.h"
 #include "Modules/ST7735/ST7735.h"
 #include "Display/Display.h"
@@ -92,9 +92,9 @@ void InterCom::Send(TypeMeasure::E type, float measure)
 
     if (direction & Direction::CDC)
     {
-        String<> message("%s : %f %s", names[type], measure, units[type]);
-
-        CDC::Transmit(message.c_str(), message.Size() + 1);
+//        String<> message("%s : %f %s", names[type], measure, units[type]);
+//
+//        CDC::Transmit(message.c_str(), message.Size() + 1);
     }
 
     Buffer<uint8, 16> data = CreateMessage(type, measure); //-V821

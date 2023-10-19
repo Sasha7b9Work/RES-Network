@@ -1,9 +1,12 @@
 #include "defines.h"
-#include "Hardware/CDC/CDC.h"
+#include "Hardware/CDC/usbd_cdc_interface.h"
 #include "Hardware/HAL/HAL.h"
 #include "Modules/HC12/HC12.h"
 #include "Hardware/Beeper.h"
 #include <stm32f3xx_hal.h>
+
+
+extern PCD_HandleTypeDef hpcd;
 
 
 void NMI_Handler(void)
@@ -76,7 +79,7 @@ void SysTick_Handler(void)
 
 void USB_LP_CAN_RX0_IRQHandler(void)
 {
-    CDC::OnIRQHandler();
+    HAL_PCD_IRQHandler(&hpcd);
 }
 
 void USART1_IRQHandler(void)
