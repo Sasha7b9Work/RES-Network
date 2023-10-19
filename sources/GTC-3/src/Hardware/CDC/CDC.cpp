@@ -1,4 +1,5 @@
 // 2022/04/20 08:53:58 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+#include "defines.h"
 #include "Hardware/CDC/CDC.h"
 #include "Hardware/HAL/HAL.h"
 #include <usbd_desc.h>
@@ -39,24 +40,25 @@ USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
 
 void CDC::Init()
 {
-    GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-    GPIO_InitStruct.Pin = GPIO_PIN_11 | GPIO_PIN_12;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF14_USB;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    if (USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS) != USBD_OK)
+    {
+        int i = 0;
+    }
 
-    /* Peripheral clock enable */
-    __HAL_RCC_USB_CLK_ENABLE();
+    if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC) != USBD_OK)
+    {
+        int i = 0;
+    }
 
-    USBD_Init(&hUsbDeviceFS, &FS_Desc, DEVICE_FS);
+    if (USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS) != USBD_OK)
+    {
+        int i = 0;
+    }
 
-    USBD_RegisterClass(&hUsbDeviceFS, &USBD_CDC);
-
-    USBD_CDC_RegisterInterface(&hUsbDeviceFS, &USBD_Interface_fops_FS);
-
-    USBD_Start(&hUsbDeviceFS);
+    if (USBD_Start(&hUsbDeviceFS) != USBD_OK)
+    {
+        int i = 0;
+    }
 }
 
 

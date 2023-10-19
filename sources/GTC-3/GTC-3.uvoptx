@@ -152,18 +152,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>45</LineNumber>
+          <LineNumber>30</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
+          <Address>134268310</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;2&gt;.\src\Modules\HIH4000\HIH4000.cpp</Filename>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;2&gt;.\src\Device.cpp</Filename>
           <ExecCommand></ExecCommand>
-          <Expression></Expression>
+          <Expression>\\GTC_3\src/Device.cpp\30</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>32</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134268314</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;2&gt;.\src\Device.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\GTC_3\src/Device.cpp\32</Expression>
         </Bp>
       </Breakpoint>
       <MemoryWindow1>
@@ -700,7 +716,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1056,7 +1072,7 @@
 
   <Group>
     <GroupName>Hardware/CMSIS</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

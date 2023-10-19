@@ -1,4 +1,24 @@
-// 2022/04/20 08:54:37 (c) Aleksandr Shevchenko e-mail : Sasha7b9@tut.by
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : usbd_conf.h
+  * @version        : v2.0_Cube
+  * @brief          : Header for usbd_conf.c file.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __USBD_CONF__H__
 #define __USBD_CONF__H__
 
@@ -10,7 +30,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "defines.h"
 #include "stm32f3xx.h"
 #include "stm32f3xx_hal.h"
 
@@ -42,21 +61,15 @@
   */
 
 /*---------- -----------*/
-#define USBD_MAX_NUM_INTERFACES     1
+#define USBD_MAX_NUM_INTERFACES     1U
 /*---------- -----------*/
-#define USBD_MAX_NUM_CONFIGURATION     1
+#define USBD_MAX_NUM_CONFIGURATION     1U
 /*---------- -----------*/
-#define USBD_MAX_STR_DESC_SIZ     512
+#define USBD_MAX_STR_DESC_SIZ     512U
 /*---------- -----------*/
-#define USBD_SUPPORT_USER_STRING     0
+#define USBD_DEBUG_LEVEL     0U
 /*---------- -----------*/
-#define USBD_DEBUG_LEVEL     0
-/*---------- -----------*/
-#define USBD_SELF_POWERED     1
-/*---------- -----------*/
-#define MAX_STATIC_ALLOC_SIZE     512
-
-#define USBD_LPM_ENABLED 0
+#define USBD_SELF_POWERED     1U
 
 /****************************************/
 /* #define for FS and HS identification */
@@ -157,4 +170,3 @@ void USBD_static_free(void *p);
 
 #endif /* __USBD_CONF__H__ */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
