@@ -6,9 +6,6 @@
 #include <stm32f3xx_hal.h>
 
 
-extern PCD_HandleTypeDef hpcd;
-
-
 void NMI_Handler(void)
 {
 }
@@ -79,7 +76,7 @@ void SysTick_Handler(void)
 
 void USB_LP_CAN_RX0_IRQHandler(void)
 {
-    HAL_PCD_IRQHandler(&hpcd);
+    HAL_PCD_IRQHandler((PCD_HandleTypeDef *)HCDC::handlePCD);
 }
 
 void USART1_IRQHandler(void)

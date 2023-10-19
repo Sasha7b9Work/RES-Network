@@ -714,14 +714,14 @@
               <FilePath>.\src\Hardware\CDC\usbd_cdc_interface.h</FilePath>
             </File>
             <File>
-              <FileName>usbd_conf.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CDC\usbd_conf.cpp</FilePath>
+              <FileName>usbd_conf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\CDC\usbd_conf.c</FilePath>
             </File>
             <File>
-              <FileName>usbd_desc.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CDC\usbd_desc.cpp</FilePath>
+              <FileName>usbd_desc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\CDC\usbd_desc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1780,14 +1780,14 @@
               <FilePath>.\src\Hardware\CDC\usbd_cdc_interface.h</FilePath>
             </File>
             <File>
-              <FileName>usbd_conf.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CDC\usbd_conf.cpp</FilePath>
+              <FileName>usbd_conf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\CDC\usbd_conf.c</FilePath>
             </File>
             <File>
-              <FileName>usbd_desc.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>.\src\Hardware\CDC\usbd_desc.cpp</FilePath>
+              <FileName>usbd_desc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Hardware\CDC\usbd_desc.c</FilePath>
             </File>
           </Files>
         </Group>

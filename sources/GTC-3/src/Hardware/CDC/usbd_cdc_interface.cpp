@@ -1,11 +1,16 @@
+#include "Hardware/CDC/usbd_cdc_interface.h"
 #include <usbd_cdc.h>
 
 
 #define APP_RX_DATA_SIZE  2048
 #define APP_TX_DATA_SIZE  2048
 
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
+
+PCD_HandleTypeDef _handlePCD;
+
+void *HCDC::handlePCD = &_handlePCD;
+
+
 USBD_CDC_LineCodingTypeDef LineCoding =
 {
   115200, /* baud rate*/
@@ -25,7 +30,7 @@ uint32_t UserTxBufPtrOut = 0; /* Increment this pointer or roll it back to
                                  /* USB handler declaration */
 extern USBD_HandleTypeDef  hUSBDDevice;
 
-/* Private function prototypes -----------------------------------------------*/
+
 static int8_t CDC_Itf_Init(void);
 static int8_t CDC_Itf_DeInit(void);
 static int8_t CDC_Itf_Control(uint8_t cmd, uint8_t *pbuf, uint16_t length);

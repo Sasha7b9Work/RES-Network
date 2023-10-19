@@ -78,9 +78,9 @@ source_group(Utils              FILES ${UTILS})
 source_group(Utils/Text         FILES ${UTILS_TEXT})
 
 set_source_files_properties(${STM32F3} ${HARDWARE_CMSIS}
-                            src/Hardware/CDC/usbd_desc.c
-                            src/Hardware/CDC/usb_device.c
-                            src/Hardware/CDC/usbd_conf.c
+#                            src/Hardware/CDC/usbd_desc.c
+#                            src/Hardware/CDC/usb_device.c
+#                            src/Hardware/CDC/usbd_conf.c
                             PROPERTIES HEADER_FILE_ONLY TRUE)
 
 add_library(${PROJECT_NAME}

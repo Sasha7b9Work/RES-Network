@@ -154,7 +154,7 @@
           <Type>0</Type>
           <LineNumber>30</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134268310</Address>
+          <Address>134267914</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -170,7 +170,7 @@
           <Type>0</Type>
           <LineNumber>32</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134268314</Address>
+          <Address>134267918</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -716,7 +716,7 @@
 
   <Group>
     <GroupName>src</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1207,24 +1207,24 @@
     <File>
       <GroupNumber>7</GroupNumber>
       <FileNumber>61</FileNumber>
-      <FileType>8</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\CDC\usbd_conf.cpp</PathWithFileName>
-      <FilenameWithoutPath>usbd_conf.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Hardware\CDC\usbd_conf.c</PathWithFileName>
+      <FilenameWithoutPath>usbd_conf.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>7</GroupNumber>
       <FileNumber>62</FileNumber>
-      <FileType>8</FileType>
+      <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\src\Hardware\CDC\usbd_desc.cpp</PathWithFileName>
-      <FilenameWithoutPath>usbd_desc.cpp</FilenameWithoutPath>
+      <PathWithFileName>.\src\Hardware\CDC\usbd_desc.c</PathWithFileName>
+      <FilenameWithoutPath>usbd_desc.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
