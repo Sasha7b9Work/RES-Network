@@ -52,15 +52,19 @@ void Device::Init()
 
     W25Q80DV::Test::Run();
 
-    Beeper::Start(4000);
+//    Beeper::Start(4000);
 }
 
 
 void Device::Update()
 {
+    static int counter = 0;
+    counter++;
+    
+   
     if (Beeper::Running() && TIME_MS > 2000)
     {
-        Beeper::Stop();
+//        Beeper::Stop();
     }
 
     float temp = 0.0f;
@@ -70,7 +74,15 @@ void Device::Update()
 
     if (BME280::GetMeasures(&temp, &pressure, &humidity))
     {
+            if(counter == 1)
+    {
+        counter = counter;
+    }
         InterCom::Send(TypeMeasure::Temperature, temp);
+        if(counter == 1)
+    {
+        counter = counter;
+    }
         InterCom::Send(TypeMeasure::Pressure, pressure);
         InterCom::Send(TypeMeasure::Humidity, humidity);
 
@@ -85,11 +97,11 @@ void Device::Update()
 
         if (in_range)
         {
-            Beeper::Stop();
+//            Beeper::Stop();
         }
         else
         {
-            Beeper::Start(100);
+//            Beeper::Start(100);
         }
     }
 
