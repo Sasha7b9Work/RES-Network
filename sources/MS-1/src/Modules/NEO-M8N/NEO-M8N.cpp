@@ -22,9 +22,9 @@ namespace NEO_M8N
 
     char *GetData() { return message; }
 
-    static RingBuffer<1024> in_buffer;
+    static RingBuffer<1024> in_buffer;          // Сюда складываются данные, приходящие из модуля. К этому 
 
-    static Buffer<2048> out_buffer;
+    static Buffer<2048> out_buffer;             // Сюда перемещаются
 }
 
 

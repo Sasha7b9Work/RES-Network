@@ -35,9 +35,9 @@ void Device::Init()
 
     gset.Reset();
 
-    BME280::Init();         // Температура, давление, влажность, точка росы
+//    BME280::Init();         // Температура, давление, влажность, точка росы
 
-    GY511::Init();          // Компас
+//    GY511::Init();          // Компас
 
     HC12::Init();           // Радиомодуль
 
@@ -53,13 +53,24 @@ void Device::Init()
 
     HAL_USART2::Init();
 
-    HAL_IWDG::Init();
+//    HAL_IWDG::Init();
+
+    pinSCL.Init();
+    pinSDA.Init();
+
+    while (true)
+    {
+        pinSCL.ToHi();
+        pinSDA.ToHi();
+        pinSCL.ToLow();
+        pinSDA.ToLow();
+    }
 }
 
 
 void Device::Update()
 {
-    HAL_IWDG::Update();
+//    HAL_IWDG::Update();
 
     if (Beeper::Running() && TIME_MS > 2000)
     {

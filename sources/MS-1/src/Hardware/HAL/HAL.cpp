@@ -36,7 +36,7 @@ void HAL::Init()
 
 //    __HAL_RCC_WWDG_CLK_ENABLE();
 
-    HAL_I2C1::Init();
+//    HAL_I2C1::Init();
 
     /* Init Device Library */
     USBD_Init(&hUSBDDevice, &VCP_Desc, 0);
